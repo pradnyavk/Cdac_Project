@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <div>
+        <form #registerMap="ngForm" (ngSubmit)="collectData(registerMap)" >
+            <!-- {{registerMap.value | json}} -->
+            Namea:
+            <input type="text" name="name" ngModel>
+            Email:
+            <input type="email" name="email" ngModel>
+            Password:
+            <input type="password" name="password" ngModel>
+            <div>
+            Gender:
+            <input type="radio" name="gender" value="MALE" ngModel> Male
+            <input type="radio" name="gender" value="FEMALE" ngModel> Female
+            </div>
+            <div>
+                Role:
+                <input type="radio" name="role" value="ADMIN" ngModel> Admin
+                <input type="radio" name="role" value="USER" ngModel> User
+                </div>
+            <input type="submit" value="register">
+        </form>
+    </div>
+</body>
+</html>

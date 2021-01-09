@@ -1,0 +1,8 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
+    border: 1px solid black;
+    padding: 6px;
+}

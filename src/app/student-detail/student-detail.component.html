@@ -1,0 +1,11 @@
+<p>{{student.studentName}}</p>
+<form #formref="ngForm" (ngSubmit)="getTeachers(formref)">
+    Enter your subject:
+    <input type="text" name="subject" ngModel><br>
+    <input type="submit" value="Serach">
+</form>
+<ul>
+    <li *ngFor="let item of teachers">
+        {{item}}
+    </li>
+</ul>
