@@ -1,4 +1,5 @@
 export interface ITeacher{
+ id:String,
  teacherName:String,
  email:String ,
  age:number,

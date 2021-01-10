@@ -6,6 +6,15 @@
 </form>
 <ul>
     <li *ngFor="let item of teachers">
-        {{item}}
+        <span>{{item.id}} </span>
+        <span>{{item.teacherName}} </span>
+        <span>{{item.email}} </span>
+        <span>{{item.age}} </span>
+        <button (click)="addTeacher(item.id)">Hire</button>
     </li>
 </ul>
+
+
+<div>
+    <app-hired-teacher-list [(studentId)]="student.id"></app-hired-teacher-list>
+</div>

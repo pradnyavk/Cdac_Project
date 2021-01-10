@@ -1,5 +1,7 @@
 <h1>Welcome : {{user.name}}</h1>
-
+<a routerLink="['/user/studentList',{id:user.id}]"  routerLinkActive="active">
+    student list
+  </a>
 <button (click)="addStudent()">Add Student</button>
 <button (click)="getStudentList()">Student List</button>
 <router-outlet></router-outlet>

@@ -13,7 +13,10 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private rouer: Router
-    ) { }
+    ) {
+
+      console.log("inside usr registration");
+     }
 
   ngOnInit(): void {
   }

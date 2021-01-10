@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
     private _userService: UserService,
     private router: Router
     )
-   { }
+   { 
+     console.log("inside login const")
+   }
 
   ngOnInit(): void {
   }
