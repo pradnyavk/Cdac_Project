@@ -1,0 +1,11 @@
+<h1>Student List</h1>
+<ul>
+    <li *ngFor="let item of students">
+        <span>{{item.studentName}}</span>| |
+        <span>{{item.dob}}</span>| |
+        <span>{{item.email}}</span>
+        <span><button (click)="getStudentDetail(item.id)">Detail</button></span>
+    </li>
+</ul>
+
+<router-outlet></router-outlet>
