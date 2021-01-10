@@ -12,18 +12,18 @@ export class UserComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router:Router         
-    ) { }
+    ) { console.log("user component")}
   ngOnInit(): void {
     this.route.queryParams.subscribe((params)=>this.user = params);
     console.log(this.user.name);
-    console.log(this.user.students);
   }
   addStudent(){
     this.router.navigate(['addStudent'], {relativeTo:this.route, queryParams:this.user, replaceUrl:true});
   }
 
   getStudentList(){
-    console.log("urk")
+    console.log("inside student list");
+    console.log(this.user.name);
     this.router.navigate(['user/studentList'], {queryParams:this.user, replaceUrl: true})
   }
 

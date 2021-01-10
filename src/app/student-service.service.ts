@@ -28,4 +28,5 @@ export class StudentServiceService {
     var temp_url = this.url3+""+id;
     return this.http.get<IStudent[]>(temp_url);
   }
+
 }
