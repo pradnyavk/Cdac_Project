@@ -1,0 +1,36 @@
+<p>add-teacher works!</p>
+
+<form  #teacherData="ngForm" (ngSubmit)="onSubmit(teacherData)">
+    Name:
+    <input type="text" name="teacherName" ngModel><br>
+    Email:
+    <input type="email" name="email" ngModel><br>
+    Age:
+    <input type="text"  name="age" ngModel><br>
+    Gender:
+    <select name="gender" ngModel>
+        <option value="MALE">Male</option>
+        <option value="MALE">Female</option>
+        <option value="OTHER">Other</option>
+    </select><br>
+    Exp Year:
+    <input type="text" name="expYear" ngModel><br>
+    Address:<br>
+     City:
+    <input type="text" name="city" ngModel><br>
+    State:
+    <input type="text" name="state" ngModel><br>
+
+    Phone No:<br>
+      primary:
+      <input type="text" name="phone1"><br>
+      secondar:
+      <input type="text" name="phone2"><br>
+    Course:<br>
+      <select name="course" ngModel>
+        <option *ngFor="let item of courses" value="item.id">{{item.courseName}}</option>
+    </select><br>
+    Resume:<br>
+    <input type="file" name="resume"><br>
+    <input type="submit" value="Submit">
+</form>

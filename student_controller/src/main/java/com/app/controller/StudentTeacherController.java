@@ -44,24 +44,34 @@ public class StudentTeacherController {
 		return new ResponseEntity<ArrayList<Teacher>>(teachers, HttpStatus.OK);
 	}
 	
-	@GetMapping("/remove/teacher/{sid}/{tid}")
+	@GetMapping("/list")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<?> removeTeacher(@PathVariable String sid, @PathVariable String tid){
-		  
-		long sid1 = Long.parseLong(sid);
-		long tid1 = Long.parseLong(tid);
-		String message = "";
+	public ResponseEntity<?> getAllStudentTeacherWhereStatusisFalse(){
+		ArrayList<StudentTeacher> st = new ArrayList<>();
+		
 		try {
-			 StudentTeacher st = dao.findStudentTeacher(sid1, tid1);
-			 Student s = dao1.findStudentById(sid1);
-			 s.removeStudentTeacher(st);
-			 dao1.saveStudent(s);
+			st = dao.findStudentTeacherWhereStatusIsNull();
 		}catch(RuntimeException e) {
-			e.printStackTrace();
-			return new ResponseEntity<String>(message, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<ArrayList<StudentTeacher>>(st, HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<String>(message, HttpStatus.OK);
+		return new ResponseEntity<ArrayList<StudentTeacher>>(st, HttpStatus.OK);
 	}
 	
+	@GetMapping("/updatestatus/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<?> updateStudentTeacherStatus(@PathVariable String id){
+		 long id1 = Long.parseLong(id);
+		 ArrayList<StudentTeacher> st = new ArrayList<>();
+		 try {	
+			    StudentTeacher st2 =dao.findStudentTeacherById(id1);
+			    st2.setStatus(true);
+			    dao.save(st2);
+				st = dao.findStudentTeacherWhereStatusIsNull();
+			}catch(RuntimeException e) {
+				return new ResponseEntity<ArrayList<StudentTeacher>>(st, HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<ArrayList<StudentTeacher>>(st, HttpStatus.OK);
+		
+	}	
 	
 }

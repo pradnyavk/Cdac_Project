@@ -40,7 +40,7 @@ public class TeacherCourseController {
 			tc = dao.findListOfTeacherCourseWhereCourse(courseName);
 			System.out.println(tc);
 			for(Teacher t : tc) {
-				if(t.getAddress().getCity().equals(city) && t.getAddress().getState().equals(state)) {
+				if(t.getAddress().getCity().equals(city) && t.getAddress().getState().equals(state) && t.isStatus()) {
 					finalList.add(t);
 				}
 			}

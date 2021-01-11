@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.pojos.Student;
+import com.app.pojos.StudentTeacher;
 import com.app.reposetory.StudentRepo;
 
 @Service
@@ -44,4 +45,8 @@ public class StudentService {
 	public List<Student> findAllStudentByUserId(long id) {
 		return dao.findAllStudentByUserId(id);
 	}
+	
+	 public StudentTeacher findStudentTeacher(long sid, long tid ) {
+		 return dao.findStudentTeacher(sid, tid);
+	 }
 }

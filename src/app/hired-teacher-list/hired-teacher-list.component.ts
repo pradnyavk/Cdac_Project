@@ -10,12 +10,11 @@ import { TeacherService } from '../teacher.service';
 })
 export class HiredTeacherListComponent implements OnInit {
 
-  @Input() studentId:String;
+  @Input() studentId:any;
   teachers:ITeacher[] = [];
   constructor(
     private _service: TeacherService
-  ) { 
-    this.studentId = ""; 
+  ) {  
   }
 
   ngOnInit(): void {

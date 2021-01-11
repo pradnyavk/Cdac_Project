@@ -15,9 +15,14 @@ public interface StudentTeacherRepo extends JpaRepository<StudentTeacher, Long>{
 	
 	@Query("select tc.teacher from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher where s.id = ?1")
 	public ArrayList<Teacher> findTeachersOfStudentId(long id);
+    @Query("select st from StudentTeacher st where st.status = false")
+	public ArrayList<StudentTeacher> findStudnetTeacherWhereStatusIsNuLL();
+    @Modifying
+    @Query("update StudentTeacher st set st.status = true where st.id = ?1")
+	public void changeStatusOfId(long id1);
+	public StudentTeacher findStudentTeacherById(long id1);
 	
-	@Query("select st from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher t where s.id = ?1 and t.id = ?2")
-	public StudentTeacher findStudentTeacher(long sid, long tid );
+
 //	@Transactional
 //	@Modifying
 //	@Query("delete from StudentTeacher st where st.id = (select st1.id from StudentTeacher st1 join st1.student s join st1.teacherCourse tc join tc.teacher t where s.id = ?1 and t.id =?2)")

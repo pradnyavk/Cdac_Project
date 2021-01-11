@@ -182,4 +182,23 @@ public class StudentController {
 		return new ResponseEntity<Student>(s1, HttpStatus.OK);
 		
 	}
+	
+	@GetMapping("/remove/teacher/{sid}/{tid}")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> removeTeacher(@PathVariable String sid, @PathVariable String tid){
+		  
+		long sid1 = Long.parseLong(sid);
+		long tid1 = Long.parseLong(tid);
+		String message = "";
+		try {
+			 StudentTeacher st = dao.findStudentTeacher(sid1, tid1);
+			 Student s = dao.findStudentById(sid1);
+			 s.removeStudentTeacher(st);
+			 dao.saveStudent(s);
+		}catch(RuntimeException e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(message, HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<String>(message, HttpStatus.OK);
+	}
 }
