@@ -25,7 +25,24 @@ public class StudentTeacherService {
 //	 public int removeTeacher(long sid,long tid) {
 //		 return dao.removeTeacher(sid, tid);
 //	 }
-	 public StudentTeacher findStudentTeacher(long sid, long tid ) {
-		 return dao.findStudentTeacher(sid, tid);
-	 }
+
+	public ArrayList<StudentTeacher> findStudentTeacherWhereStatusIsNull() {
+		// TODO Auto-generated method stub
+		return dao.findStudnetTeacherWhereStatusIsNuLL();
+	}
+
+	public void changeStatusOfId(long id1) {
+		dao.changeStatusOfId(id1);
+	}
+
+	public StudentTeacher findStudentTeacherById(long id1) {
+		
+		return dao.findStudentTeacherById(id1);
+	}
+
+	public void save(StudentTeacher st2) {
+		dao.save(st2);
+		
+	}
+	
 }

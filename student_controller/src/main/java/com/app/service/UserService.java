@@ -46,4 +46,10 @@ public class UserService {
 		System.out.println("inside service findUserByEmail");
 		return dao.findUserByEmail(email);
 	}
+	public User save(User u) {
+		return dao.save(u);
+	}
+	public User findCourseById(long id1) {
+		return dao.findUserById(id1);
+	}
 }

@@ -187,6 +187,17 @@ public void removeStudentTeacher(StudentTeacher st) {
 	st.setStudent(null);
 }
 
+
+
+@Override
+public boolean equals(Object o) {
+    long i = ((Student)o).getId() - this.getId();
+    if(i == 0)
+    	return true;
+    return false;
+}
+
+
 @Override
 public String toString() {
 	return "Student [studentName=" + studentName + ", dob=" + dob + ", location=" + address +"]";

@@ -21,9 +21,17 @@ export class StudentTeacherService {
     .subscribe(data=>{
       this.http.post(url, data).subscribe(st=> {return st});
     });
-   
+  
   }
 
+  getAllNewStudentTeacher(){
+    let url = "http://localhost:8080/studentTeacher/list";
+    return this.http.get(url);
+  }
 
+  confirmStatus(id:String){
+    let url = "http://localhost:8080/studentTeacher/updatestatus/"+id;
+    return this.http.get(url);
+  }
 
 }

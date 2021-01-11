@@ -1,7 +1,14 @@
 <h1>Welcome : {{user.name}}</h1>
-<a routerLink="['/user/studentList',{id:user.id}]"  routerLinkActive="active">
-    student list
-  </a>
+
+<button (click)="toggleSS()">StudentSection</button>
+<button (click)="toggleTS()">TeacherSection</button>
+<div *ngIf="showStudentSection">
 <button (click)="addStudent()">Add Student</button>
 <button (click)="getStudentList()">Student List</button>
+</div>
+<div *ngIf="showTeacherSection">
+  <button (click)="addTeacher()">Add Teacher</button>
+  <button (click)="getTeacherList()">Teacher List</button>
+</div>
+
 <router-outlet></router-outlet>

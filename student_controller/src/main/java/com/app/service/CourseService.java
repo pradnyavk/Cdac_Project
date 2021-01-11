@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.pojos.Course;
+import com.app.pojos.User;
 import com.app.reposetory.CourseRepo;
 
 @Service
@@ -27,4 +28,9 @@ public class CourseService {
 	public Course findCourseByCourseName(String courseName) {
 		return dao.findCourseByCourseName(courseName);
 	}
+
+	public User findCourseById(long id) {
+		return dao.findCourseById(id);
+	}
+
 }

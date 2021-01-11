@@ -47,6 +47,7 @@ public class TeacherController {
 	}
 
 	@GetMapping("/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> findTeacherById(@PathVariable String id) {
 		System.out.println("inside findTeacher by Id");
 		long id1 = Long.parseLong(id);
@@ -56,16 +57,20 @@ public class TeacherController {
 		} catch (RuntimeException e) {
 			return new ResponseEntity<String>("no result found", HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<>(t, HttpStatus.OK);
+		return new ResponseEntity<Teacher>(t, HttpStatus.OK);
 	}
 
-	@PostMapping(consumes = { org.springframework.http.MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<?> saveTeacher(@RequestBody Teacher t) {
+	@PostMapping(value = "{id}",
+			consumes = { org.springframework.http.MediaType.APPLICATION_JSON_VALUE })
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> saveTeacher(@RequestBody Teacher t, @PathVariable String id) {
 		System.out.println("inside saveTeacher");
 		Teacher t1 = null;
+		System.out.println(t);
 		try {
 			t1 = dao.saveTeacher(t);
 		} catch (RuntimeException e) {
+			e.printStackTrace();
 			return new ResponseEntity<String>("Error while saving", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<>(t1, HttpStatus.OK);
@@ -140,7 +145,7 @@ public class TeacherController {
 
 	}
 
-	@GetMapping("/user/{id}")
+	@GetMapping("/list/user/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> getStudentsWhereUser(@PathVariable String id) {
 		List<Teacher> teachers = new ArrayList<>();
@@ -148,6 +153,7 @@ public class TeacherController {
 		try {
 			teachers = dao.findAllTeacherByUserId(id1);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<List<Teacher>>(teachers, HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Teacher>>(teachers, HttpStatus.OK);

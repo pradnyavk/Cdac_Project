@@ -160,4 +160,20 @@ public class UserController {
 		 }
 		return new ResponseEntity<List<Teacher>>(ls, HttpStatus.OK);
 	}
+	
+	@PostMapping(value="/teacher/{id}",
+			consumes = {org.springframework.http.MediaType.APPLICATION_JSON_VALUE}
+			)
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> saveTeacher(@RequestBody Teacher teacher, @PathVariable String id) {
+		long id1 = Long.parseLong(id);
+		try {
+			User u = dao.findUserById(id1);
+			u.addTeacher(teacher);
+			dao.save(u);
+		}catch(RuntimeException e) {
+			return new ResponseEntity<Teacher>(teacher, HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
+	}
 }
