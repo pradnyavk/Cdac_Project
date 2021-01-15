@@ -10,6 +10,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -20,16 +23,19 @@ public class User extends Base {
 	
 	@Column(name="uname")
 	private String name;
-	@Column(name="uemail")
+	@Column(name="uemail", unique = true)
 	private String email;
 	@Column(name="upassword")
 	private String password;
-	@Column(name="role")
+	@Column(name="role", columnDefinition = "varchar(255) default 'USER'")
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	@Column(name="gender")
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
+	@Column(name="profile")
+	@Enumerated(EnumType.STRING)
+	private Profile profile;
 	
 	
 	
@@ -86,6 +92,14 @@ public class User extends Base {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
 	}
 
 	public Gender getGender() {

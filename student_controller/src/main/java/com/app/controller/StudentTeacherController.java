@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import com.app.service.StudentTeacherService;
 
 @RestController
 @RequestMapping("/studentTeacher")
+@CrossOrigin
 public class StudentTeacherController {
 	
 	@Autowired
@@ -72,6 +74,29 @@ public class StudentTeacherController {
 			}
 			return new ResponseEntity<ArrayList<StudentTeacher>>(st, HttpStatus.OK);
 		
-	}	
+	}
+	@GetMapping("/studentList/{teacherId}")
+	public ResponseEntity<?> getStudentListByTeacherId(@PathVariable String teacherId){
+		long id = Long.parseLong(teacherId);
+		 ArrayList<Student> st = new ArrayList<>();
+		 try {
+			  st = dao.findStudentListByTeacherId(id);
+		 }catch (RuntimeException e) {
+			 return new ResponseEntity<>(HttpStatus.NO_CONTENT);	
+		}
+		 return new ResponseEntity<ArrayList<Student>>(st, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/removeStudent/{studentId}/{teacherId}")
+	public ResponseEntity<?> removeStudentfromteacher(@PathVariable String studentId, @PathVariable String teacherId){
+		long stId  = Long.parseLong(studentId);
+		long tId = Long.parseLong(teacherId);
+		try {
+			dao.removeStudentFromTeacher(stId, tId);
+		}catch (RuntimeException e) {
+			 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		 return new ResponseEntity<ArrayList<Student>>(HttpStatus.OK);
+	}
 	
 }

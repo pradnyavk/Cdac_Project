@@ -2,6 +2,8 @@ package com.app.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +15,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.pojos.Student;
 import com.app.pojos.Teacher;
 import com.app.pojos.User;
 import com.app.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-	
+	 Logger logger =  LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private UserService dao;
 	
@@ -60,24 +66,25 @@ public class UserController {
 			consumes = {org.springframework.http.MediaType.APPLICATION_JSON_VALUE}
 			)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<?> getUserById(@RequestBody User user){
-		System.out.println("inside save User");
+	public ResponseEntity<?> saveUser(@RequestBody User user){
+       logger.info("insde save user scope");
 		User user1 = null;
 		try {
+			logger.info("start saving .....");
 			user1 = dao.saveUser(user);
+			logger.info("out of scope");
 		} catch (RuntimeException e) {
-			return new ResponseEntity<String>("Error while saving", HttpStatus.NO_CONTENT);
+			 logger.error("Something wrong ...."+ e.getStackTrace());
+			return new ResponseEntity<String>("Error while saving", HttpStatus.EXPECTATION_FAILED);
 		}
 		return new ResponseEntity<>(user1, HttpStatus.OK);
 	}
 	@PutMapping("/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<?> getUserById(@RequestBody User user, @PathVariable String id){
-		System.out.println("inside update User");
-		long id1 = Long.parseLong(id);
+	public ResponseEntity<?> updateUser(@RequestBody User user){
 		User user1 = null;
 		try {
-			user1 = dao.findUserById(id1);
+			user1 = dao.findUserById(user.getId());
 			if(user1 != null) {
 			     user1 = user;
 				dao.saveUser(user1);
@@ -103,9 +110,18 @@ public class UserController {
 	}
 	
 //===============================================================================================
+	
+// login verification
+	
+	
 	@PostMapping("/veryfication")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> veryfieUser(@RequestBody User user){
+		 logger.trace("A TRACE Message");
+	        logger.debug("A DEBUG Message");
+	        logger.info("An INFO Message");
+	        logger.warn("A WARN Message");
+	        logger.error("An ERROR Message");
 		User user1 = null;
 		user1 = dao.findUserByEmail(user.getEmail());
 		System.out.println(user1);
@@ -117,62 +133,59 @@ public class UserController {
 		return new ResponseEntity<String>("invalid Email or password", HttpStatus.NO_CONTENT);
 	}
 	
-	@PutMapping("/{id}/student")
+	@PutMapping("/{id}/addStudent")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> addStudent(@RequestBody Student student, @PathVariable String id){
+		logger.info("addStudent function started");
 		User user = null;
 		List<Student> ls = new ArrayList<Student>();
 		long id1 = Long.parseLong(id);
 		System.out.println(id1);
 		
 		  try { 
+			  logger.info("searchind user....");
 			  user = dao.findUserById(id1);
+			  logger.info("user found");
 			  user.addStudent(student); 
 			  user = dao.saveUser(user);
+			  logger.info("student added successfully");
 			  ls = user.getStudents();
 			  for(Student s : ls) {
 				  s.setUserName(null);
 			  }
+			  logger.info("out of AddStudent scope");
 		 } catch(RuntimeException e) {
-		      return new  ResponseEntity<List<Student>>(ls, HttpStatus.NO_CONTENT); 
+			 logger.error("Something wrong ...."+ e.getStackTrace());
+		      return new  ResponseEntity<List<Student>>(ls, HttpStatus.EXPECTATION_FAILED); 
 		 }
 		return new ResponseEntity<List<Student>>(ls, HttpStatus.OK);
 	}
 	
-	@PutMapping("/{id}/teacher")
+	@PostMapping(value="/teacher/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<?> addteacher(@RequestBody Teacher teacher, @PathVariable String id){
-		User user = null;
-		List<Teacher> ls = new ArrayList<Teacher>();
-		long id1 = Long.parseLong(id);
-		System.out.println(id1);
-		
-		  try { 
-			  user = dao.findUserById(id1);
-			  user.addTeacher(teacher); 
-			  user = dao.saveUser(user);
-			  ls = user.getTeachers();
-			  for(Teacher t : ls) {
-				  t.setUserName(null);
-			  }
-		 } catch(RuntimeException e) {
-		      return new  ResponseEntity<List<Teacher>>(ls, HttpStatus.NO_CONTENT); 
-		 }
-		return new ResponseEntity<List<Teacher>>(ls, HttpStatus.OK);
-	}
-	
-	@PostMapping(value="/teacher/{id}",
-			consumes = {org.springframework.http.MediaType.APPLICATION_JSON_VALUE}
-			)
-	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<?> saveTeacher(@RequestBody Teacher teacher, @PathVariable String id) {
+	public ResponseEntity<?> addTeacher(@RequestParam  String teacherData, @RequestParam MultipartFile doc ,@PathVariable String id) {
+		logger.info("inside add Teacher scope...");
+		Teacher teacher = null;
 		long id1 = Long.parseLong(id);
 		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.registerModule(new JavaTimeModule());
+		    teacher = mapper.readValue(teacherData, Teacher.class);
+			teacher.setResume(doc.getBytes());
+			teacher.setDocType(doc.getContentType());
+			
+			logger.info("searching user......");
 			User u = dao.findUserById(id1);
+			logger.info("user found");
 			u.addTeacher(teacher);
+			logger.info("teacher added successfully");
 			dao.save(u);
-		}catch(RuntimeException e) {
-			return new ResponseEntity<Teacher>(teacher, HttpStatus.NO_CONTENT);
+			logger.info("out of scope!!!!!");
+		}catch(Exception e) {
+			e.printStackTrace();
+			logger.error("Something wrong ...."+ e.getMessage());
+			return new ResponseEntity<Teacher>(teacher, HttpStatus.EXPECTATION_FAILED);
 		}
 		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
 	}

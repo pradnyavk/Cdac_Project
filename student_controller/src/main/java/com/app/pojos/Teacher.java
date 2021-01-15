@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="teachers")
-@JsonIgnoreProperties(value = {"teachers", "courses", "sessions", "students"})
+@JsonIgnoreProperties(value = {"sessions"})
 public class Teacher extends Base{
 	  @Column(name="teacher_name")
 	   private String teacherName;
@@ -60,21 +60,25 @@ public class Teacher extends Base{
 	  @Column(name="resume")
 	  private byte[] resume;
 	  
+	  @Column(name="docType")
+	  private String docType;
+	  
 	  @Embedded
 	  private Address address;
 	  
 	  
 	  
-	  @OneToMany(mappedBy = "teacher")
+	  @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	  private List<Session> sessions= new ArrayList<>();
 	  @ElementCollection
 	  @CollectionTable(
 			  name="teachers_phone_no",
 			  joinColumns = @JoinColumn(name="teacher_id")
 			  )
+	  @Column(name="phones")
 	  private List<String> phones;
 	   
-	   @OneToMany(mappedBy="teacher", cascade = CascadeType.ALL, orphanRemoval = true)
+	   @OneToMany(mappedBy="teacher", cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.LAZY)
 	   private List<TeacherCourse> teacherCourse = new ArrayList<TeacherCourse>();
 	   
 	   @ManyToOne
@@ -117,6 +121,26 @@ public class Teacher extends Base{
 		this.status = status;
 		this.resume = resume;
 		this.address = address;
+	}
+
+
+	public String getDocType() {
+		return docType;
+	}
+
+
+	public void setDocType(String docType) {
+		this.docType = docType;
+	}
+
+
+	public List<TeacherCourse> getTeacherCourse() {
+		return teacherCourse;
+	}
+
+
+	public void setTeacherCourse(List<TeacherCourse> teacherCourse) {
+		this.teacherCourse = teacherCourse;
 	}
 
 
@@ -263,6 +287,11 @@ public class Teacher extends Base{
 	public void addSession(Session s) {
 		this.sessions.add(s);
 		s.setTeacher(this);
+	}
+	
+	public void addTeacherCourse(TeacherCourse tc) {
+	  this.teacherCourse.add(tc);
+	  tc.setTeacher(this);
 	}
 
 	@Override

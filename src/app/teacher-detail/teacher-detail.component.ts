@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentServiceService } from '../student-service.service';
 import { TeacherService } from '../teacher.service';
 
 @Component({
@@ -8,20 +9,54 @@ import { TeacherService } from '../teacher.service';
   styleUrls: ['./teacher-detail.component.css']
 })
 export class TeacherDetailComponent implements OnInit {
-  id:any;
+  user:any;
   teacher:any;
   constructor(
     private route:ActivatedRoute,
     private router: Router,
-    private _service: TeacherService
+    private _teacherService: TeacherService,
+    private _studentService: StudentServiceService,
+    // private _sessionService: SessionService
   ) { }
-
   ngOnInit(): void {
     this.route.queryParams.subscribe(data=>{
-      this.id = data.id;
-      this._service.findTeacherById(this.id)
+      this.user = data;
+      this._teacherService.getTeachersByUserId(this.user.id)
       .subscribe(data =>this.teacher = data);
     });
   }
 
+  registerForCourse(course:any){
+
+  }
+  seeJobs(){
+
+  }
+  getSessionsList(){
+    this._teacherService.getAllSessions(this.teacher[0].id).subscribe(data=>{}, error=>{
+      console.log("error message")
+    });
+  }
+  removeStduent(studentId:any){
+    this._teacherService.removeStudent(studentId, this.teacher[0].id).subscribe(data=>{}, error=>{
+      console.log("error message")
+    });
+  }
+  rejectJob(){
+
+  }
+  studentDetail(studentId:any){
+   this._studentService.getStudentById(studentId).subscribe(data=>{}, error=>{
+     console.log("error message")
+   })
+  }
+
+  studentList(teacherId:any){
+    this._teacherService.getStudentList(this.teacher[0].id).subscribe(data=>{}, error=>{
+      console.log("error message")
+    })
+  }
+  getNotice(){
+
+  }
 }

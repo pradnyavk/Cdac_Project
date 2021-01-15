@@ -7,5 +7,6 @@ export interface IUser{
     gender: String,
     role: String
     students:IStudent[],
-    teachers:[]
+    teachers:[],
+    profile:String
 }

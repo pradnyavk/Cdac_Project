@@ -1,36 +1,73 @@
-<p>add-teacher works!</p>
 
-<form  #teacherData="ngForm" (ngSubmit)="onSubmit(teacherData)">
-    Name:
-    <input type="text" name="teacherName" ngModel><br>
-    Email:
-    <input type="email" name="email" ngModel><br>
-    Age:
-    <input type="text"  name="age" ngModel><br>
-    Gender:
-    <select name="gender" ngModel>
-        <option value="MALE">Male</option>
-        <option value="MALE">Female</option>
-        <option value="OTHER">Other</option>
-    </select><br>
-    Exp Year:
-    <input type="text" name="expYear" ngModel><br>
-    Address:<br>
-     City:
-    <input type="text" name="city" ngModel><br>
-    State:
-    <input type="text" name="state" ngModel><br>
+<form #teacherData="ngForm" (ngSubmit)="onSubmit(teacherData)">
+  <div class="row mb-3">
+    <label for="age" class="col-sm-2 col-form-label">Age</label>
+    <div class="col-sm-10">
+      <input type="text" name="age" id="age" class="form-control" ngModel>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="expYear" class="col-sm-2 col-form-label">ExpYear</label>
+    <div class="col-sm-10">
+      <input type="text" name="expYear" id="expYear" class="form-control" ngModel>
+    </div>
+  </div>
 
-    Phone No:<br>
-      primary:
-      <input type="text" name="phone1"><br>
-      secondar:
-      <input type="text" name="phone2"><br>
-    Course:<br>
-      <select name="course" ngModel>
-        <option *ngFor="let item of courses" value="item.id">{{item.courseName}}</option>
-    </select><br>
-    Resume:<br>
-    <input type="file" name="resume"><br>
-    <input type="submit" value="Submit">
+
+
+  <!-- <Address></Address> -->
+  <div class="row mb-3">
+    <label for="address" class="col-sm-2">Address</label>
+    <div class="col-sm-10" id="address">
+      <div class="col-sm-5">
+        <label for="city" class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="city" name="city" ngModel>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <label for="state" class="col-sm-2 col-form-label">State</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="state" id="state" ngModel>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- phone -->
+  <div class="row mb-3">
+    <label for="phone" class="col-sm-2 col-form-label">Phone no</label>
+    <div class="col-sm-10">
+      <input type="text" name="phone" id="phone" class="form-control" ngModel>
+    </div>
+  </div>
+
+<!-- course -->
+
+  <div class="row mb-3">
+    <label for="course" class="col-sm-2 col-form-label">Course</label>
+    <div class="col-sm-10">
+        <select class="form-select" name="course" ngModel id=course aria-label="Default select example">
+            <option selected>select</option>
+            <option *ngFor="let item of courses" value="{{item.id}}">{{item.courseName}}</option>
+        </select>
+    </div>
+</div>
+
+
+<!-- resume -->
+<div class="row mb-3">
+  <label for="resume" class="col-sm-2 col-form-label">Resume</label>
+  <div class="col-sm-10">
+    <input type="file" (change)="onFileChanged($event)" name="resume" id="resume" class="form-control" ngModel>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">
+  <input type="submit" class="btn btn-info" value="Submit">
+</div>
+</div>
+
 </form>

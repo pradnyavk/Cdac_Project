@@ -14,6 +14,7 @@ import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
 import { JobApplicationsComponent } from './job-applications/job-applications.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { JobApplicationsComponent } from './job-applications/job-applications.co
     AddTeacherComponent,
     TeacherListComponent,
     TeacherDetailComponent,
+    JobApplicationsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { JobApplicationsComponent } from './job-applications/job-applications.co
     HttpClientModule,
     FormsModule
   ],
-  providers: [StudentServiceService, UserService],
+  providers: [StudentServiceService, AuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

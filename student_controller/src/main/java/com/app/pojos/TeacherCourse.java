@@ -33,4 +33,50 @@ public class TeacherCourse extends Base {
 	
 	@Column(name="joinig_date")
 	private LocalDate joiningDate;
+
+	public TeacherCourse() {
+		super();
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public List<StudentTeacher> getStudentTeacher() {
+		return studentTeacher;
+	}
+
+	public void setStudentTeacher(List<StudentTeacher> studentTeacher) {
+		this.studentTeacher = studentTeacher;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public LocalDate getJoiningDate() {
+		return joiningDate;
+	}
+
+	public void setJoiningDate(LocalDate joiningDate) {
+		this.joiningDate = joiningDate;
+	}
+	
+	
 }

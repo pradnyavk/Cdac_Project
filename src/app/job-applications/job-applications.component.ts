@@ -19,14 +19,11 @@ export class JobApplicationsComponent implements OnInit {
   }
 
   confirmStatus(id:any){
-    this._service.confirmTeacherStatus(id);
-    this._service.getTeacherListWithStatusIsFalse()
-        .subscribe(data=>this.teachers=data);
+    console.log(id);
+    this._service.confirmTeacherStatus(id).subscribe(data=>{this.teachers = data});
   }
   reject(id:any){
-    this._service.removeTeacherById(id);
-    this._service.getTeacherListWithStatusIsFalse()
-        .subscribe(data=>this.teachers=data);
+    this._service.removeTeacherById(id).subscribe(data=>this.teachers = data);
   }
 
 }
