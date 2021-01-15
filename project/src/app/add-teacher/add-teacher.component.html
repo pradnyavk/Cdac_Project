@@ -1,0 +1,10 @@
+<h1>Enter Teacher Details</h1>
+
+<form  #teacherData="ngForm" (ngSubmit)="onSubmit(teacherData)">
+    <input type="text" name="teacherName" ngModel>
+    <input type="email" name="email" ngModel>
+    <input type="number" name="expYear" ngModel>
+    <input type="number" name="perHourFees" ngModel>
+    <input type="submit" value="Add">
+</form>
+

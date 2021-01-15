@@ -8,12 +8,14 @@ import {HttpClientModule} from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
+import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponent,
     NavBarComponent,
+    AddTeacherComponent,
   ],
   imports: [
     BrowserModule,

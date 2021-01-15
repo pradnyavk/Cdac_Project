@@ -24,7 +24,11 @@ export class UserComponent implements OnInit {
 
   getStudentList(){
     console.log("urk")
-    this.router.navigate(['user/studentList'], {queryParams:this.user, replaceUrl: true})
+    this.router.navigate(['studentList'], {relativeTo:this.route,queryParams:this.user, replaceUrl: true})
+  }
+
+  addTeacher(){
+    this.router.navigate(['addTeacher'],{relativeTo:this.route,queryParams:this.user,replaceUrl:true});
   }
 
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IStudent } from './model/student';
+import { ITeacher } from './model/teacher';
 import { IUser } from './model/user';
 
 @Injectable({
@@ -30,5 +31,9 @@ export class UserService {
   addStudent(id:String, studentData:IStudent){
     var url = this.url2+id+"/student";
     return this.http.put<IStudent[]>(url, studentData);
+  }
+  addTeacher(id:String,teacherData:ITeacher){
+    var url = this.url2+id+"/teacher";
+    return this.http.put<IStudent[]>(url, teacherData); 
   }
 }

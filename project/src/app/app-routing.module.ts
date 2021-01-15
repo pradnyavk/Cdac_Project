@@ -8,6 +8,7 @@ import { AddStudentComponent } from './addStudent/addStudent.component';
 import { UserComponent } from './user/user.component';
 import { SutdentListComponent} from './sutdent-list/sutdent-list.component'
 import { StudentDetailComponent } from './student-detail/student-detail.component';
+import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'dashboard', pathMatch:'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
     children:[
       {path:'addStudent', component: AddStudentComponent},
       {path: 'studentList', component:SutdentListComponent},
-      {path:"studentDetail", component:StudentDetailComponent} 
+      {path:"studentDetail", component:StudentDetailComponent},
+      {path:"addTeacher", component:AddTeacherComponent} 
     ]},
   {path:'dashboard', component:DashboardComponent},
   {path:'login', component:LoginComponent},
