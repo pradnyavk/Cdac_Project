@@ -24,5 +24,8 @@ public interface TeacherRepo extends JpaRepository<Teacher, Long> {
 	
 	@Query("select t from Teacher t where t.address.state=?1 and t.address.city=?2")
 	public ArrayList<Teacher> getTeachersBySubjectAndAdd(String state, String city);
+	@Query("select t from Teacher t where t.status = false")
+	public ArrayList<Teacher> findTeacherWithFalseStatus();
+	public int removeTeacherById(long id1);
 	
 }

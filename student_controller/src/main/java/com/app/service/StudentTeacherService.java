@@ -2,14 +2,18 @@ package com.app.service;
 
 import java.util.ArrayList;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.pojos.Student;
 import com.app.pojos.StudentTeacher;
 import com.app.pojos.Teacher;
 import com.app.reposetory.StudentTeacherRepo;
 
 @Service
+@Transactional
 public class StudentTeacherService {
 	
 	@Autowired
@@ -43,6 +47,14 @@ public class StudentTeacherService {
 	public void save(StudentTeacher st2) {
 		dao.save(st2);
 		
+	}
+
+	public ArrayList<Student> findStudentListByTeacherId(long id) {
+		return dao.findStudentListByTeacherId(id);
+	}
+
+	public void removeStudentFromTeacher(long stId, long tId) {
+//		dao.removeStudentFromTeacher( stId,  tId);
 	}
 	
 }

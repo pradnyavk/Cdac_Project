@@ -8,6 +8,8 @@ import { ITeacher } from './model/teacher';
   providedIn: 'root'
 })
 export class TeacherService {
+  
+ 
  
   baseUrl:String="http://localhost:8080/teacherCourse/teacher?";
   constructor(
@@ -23,12 +25,23 @@ export class TeacherService {
     return this._http.get<ITeacher[]>(url);
   }
   removeTeacherWhereTeacherId(teacherId: String, studentId: String) {
+   
     let url = "http://localhost:8080/studentTeacher/remove/teacher/"+teacherId+"/"+studentId;
     return this._http.get<String>(url);
   }
-  saveTeacher(teacherData:any, id:any){
+  saveTeacher(selectedFiles:any,teacherData:any, id:any){
+    const uploadData = new FormData();
+    uploadData.append("doc", selectedFiles);
+    uploadData.append("teacherData", JSON.stringify(teacherData));
     let url = "http://localhost:8080/user/teacher/"+id;
-    return this._http.post(url, teacherData);
+    return this._http.post(url, uploadData, {responseType: 'text'});
+  }
+  addCourseToTeacher(id: any, course: any) {
+    let uploadData = new FormData();
+    uploadData.append("course",course);
+    console.log("inside service:"+ JSON.stringify(course));
+    let url= "http://localhost:8080/teacher/addCourse/"+id;
+    return this._http.post(url,uploadData, {responseType: 'text'});
   }
 
   getTeachersByUserId(id:any){
@@ -47,7 +60,8 @@ export class TeacherService {
   }
 
   confirmTeacherStatus(id:any){
-    let url = "http://localhost:8080/teacher/confirmStatus/"+id;
+    console.log(id);
+    let url = "http://localhost:8080/teacher/confirmTeacher/"+id;
     return this._http.get(url);
   }
 
@@ -55,4 +69,20 @@ export class TeacherService {
     let url = "http://localhost:8080/teacher/remove/"+id;
     return this._http.get(url);
   }
+
+  getStudentList(teacherId:any){
+    let url = "http://localhost:8080/studentTeacher/studentList/"+teacherId;
+    return this._http.get(url);
+  }
+
+  removeStudent(studentId:any, teacherId:any){
+    let url = "http://localhost:8080/sutdentTeacher/removeStudent"+studentId+"/"+teacherId;
+    return this._http.delete(url);
+  }
+
+  getAllSessions(teacherId:any) {
+    let url = "http://localhost:8080/session/whereTeacherId/"+teacherId;
+    return this._http.get(url);
+  }
+
 }

@@ -1,4 +1,25 @@
-<p>teacher-detail works!</p>
-<div *ngIf="teacher">
-Name: {{teacher.teacherName}}
-</div>
+<app-nav-bar></app-nav-bar>
+<div class="container border">
+      <div class="row">
+          <div class="col-sm-4">
+              <div>
+                  pp
+              </div>
+              <div *ngIf="teacher" class="box">
+                 <h3>Id: {{teacher[0].id}}</h3><h3>{{teacher[0].teacherName}}</h3>
+                 <h3>Per Hour Fee: {{teacher[0].perHourFees}}</h3>
+                 <h3>Current Rating: {{teacher[0].rate}}</h3>
+                 <h3>Joining Date: {{teacher[0].joiningDate}}</h3>
+              </div>
+            </div>
+          <div class="col-sm-8">
+            <div *ngIf="teacher[0].status; else elseBlock">
+                <button (click)="studentList(teacher.id)">StudentList</button>
+                <!-- <button (click)="studentDetail()">StudentDetail</button> -->
+                <!-- <button (click)="getSessionsList()">Sessions</button> -->
+                <!-- <button (click)="getNotice()">Notice</button> -->
+            </div>
+            <ng-template #elseBlock>Not comfirmed yet</ng-template>
+          </div>
+      </div>
+  </div>

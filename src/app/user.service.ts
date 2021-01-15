@@ -28,7 +28,11 @@ export class UserService {
     return this.http.post<IUser>(this.url3, user);
   }
   addStudent(id:String, studentData:IStudent){
-    var url = this.url2+id+"/student";
+    var url = this.url2+id+"/addStudent";
     return this.http.put<IStudent[]>(url, studentData);
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem("user");
   }
 }

@@ -1,8 +1,7 @@
-.box {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    margin: auto;
-    border: 1px solid black;
-    padding: 6px;
+.box{
+    border: 1px solid whitesmoke ;
+    width: auto;
+    background-color: rgba(24, 139, 168, 0.945);
+    margin-top: 100px;
+    padding: 5px;
 }

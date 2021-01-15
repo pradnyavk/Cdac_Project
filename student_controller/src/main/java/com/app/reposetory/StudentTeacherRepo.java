@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import com.app.pojos.Student;
 import com.app.pojos.StudentTeacher;
 import com.app.pojos.Teacher;
 
@@ -21,6 +22,12 @@ public interface StudentTeacherRepo extends JpaRepository<StudentTeacher, Long>{
     @Query("update StudentTeacher st set st.status = true where st.id = ?1")
 	public void changeStatusOfId(long id1);
 	public StudentTeacher findStudentTeacherById(long id1);
+	
+	@Query("select s from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher t where t.id = ?1")
+	public ArrayList<Student> findStudentListByTeacherId(long id);
+	
+//	@Query("")
+//	public void removeStudentFromTeacher(long stId, long tId);
 	
 
 //	@Transactional

@@ -3,6 +3,8 @@ package com.app.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.pojos.Course;
 import com.app.pojos.Session;
-import com.app.pojos.Student;
 import com.app.pojos.Teacher;
 import com.app.service.TeacherService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/teacher")
 public class TeacherController {
-
+	 Logger logger =  LoggerFactory.getLogger(TeacherController.class);
+	 
 	@Autowired
 	private TeacherService dao;
 
@@ -171,5 +174,77 @@ public class TeacherController {
 		}
 		return new ResponseEntity<List<Teacher>>(teachers, HttpStatus.OK);
 	}
-
+    
+	@PostMapping("/addCourse/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> addCourseToTeacher(@RequestParam String course, @PathVariable String id){
+		logger.info("Inside add course in Teacher");
+		long id1 = Long.parseLong(id);
+	    System.out.println(course);
+		Teacher t = null;
+		try {
+			logger.info("mapper initiallized");
+			ObjectMapper mapper = new ObjectMapper();
+			logger.info("value reading.....");
+			Course c1 = mapper.readValue(course, Course.class);
+			logger.info("value read");
+			t = dao.addCourseToTeacher(c1, id1);
+			logger.info("course added successfully");
+		}catch(Exception e) {
+			logger.error("something went wrong chekk exception details");
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<Teacher>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/falseStatus")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> teacherListWithFalseStatus(){
+		ArrayList<Teacher> al = new ArrayList<>();
+		
+		
+		try {
+			logger.info("list fatching.....");
+			al = dao.getTeacherListWithFalseStatus();
+			logger.info("done fetching");
+		}catch(Exception e) {
+			logger.error("something went wrong chekk exception details");
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<ArrayList<Teacher>>(al, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/confirmTeacher/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> confirmTeacherStatus(@PathVariable String id){
+		long id1 = Long.parseLong(id);
+		ArrayList<Teacher> al = new ArrayList<>();
+		try {
+			  logger.info("confirming status");
+			  dao.confirmStatus(id1);
+			 al = dao.getTeacherListWithFalseStatus();
+			 System.out.println("done");
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<ArrayList<Teacher>>(al,HttpStatus.OK);
+	}
+	
+	@GetMapping("/remove/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> removeteacher(@PathVariable String id){
+		long id1 = Long.parseLong(id);
+		ArrayList<Teacher> al = new ArrayList<>();
+		try {
+			al = dao.removeTeacher(id1);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<ArrayList<Teacher>>(al,HttpStatus.OK);
+	}
 }

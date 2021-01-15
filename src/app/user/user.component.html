@@ -1,14 +1,25 @@
-<h1>Welcome : {{user.name}}</h1>
+<app-nav-bar></app-nav-bar>
+<div class="row">
 
+
+
+<div class="col-md-4">
+  {{user.name}}
+</div>
+
+<div class="col-md-8">
 <button (click)="toggleSS()">StudentSection</button>
-<button (click)="toggleTS()">TeacherSection</button>
 <div *ngIf="showStudentSection">
 <button (click)="addStudent()">Add Student</button>
 <button (click)="getStudentList()">Student List</button>
 </div>
-<div *ngIf="showTeacherSection">
-  <button (click)="addTeacher()">Add Teacher</button>
-  <button (click)="getTeacherList()">Teacher List</button>
+<router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>
+
+
+
+</div>
+
+
+

@@ -10,6 +10,9 @@ import { UserService } from '../user.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  user:any;
+  showUserForm:boolean = true;
+  showTeacherForm:boolean = false;
   constructor(
     private _userService: UserService,
     private rouer: Router
@@ -21,11 +24,19 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  collectData(formvalue:NgForm){
+  collectUserData(formvalue:NgForm){
     var user:IUser = formvalue.value;
     console.log(user);
+    if(user.profile.match("TEACHER")){
+      this.user = user;
+      this.showUserForm = false;
+      this.showTeacherForm = true;
+    }
+    else{
+     user.role ="USER";
     this._userService.saveUser(user)
     .subscribe(data=>console.log(data));
     this.rouer.navigate(["login"]);
+    }
   }
 }
