@@ -10,6 +10,7 @@ import { IUser } from '../model/user';
 })
 export class UserComponent implements OnInit {
   user:any;
+  imageData:any;
   showStudentSection:boolean = false;
   showTeacherSection:boolean = false;
   constructor(
@@ -17,8 +18,9 @@ export class UserComponent implements OnInit {
     private router:Router         
     ) { console.log("user component")}
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params)=>this.user = params);
-    console.log(this.user.name);
+    this.route.queryParams.subscribe((params)=>{this.user = params;
+      this.imageData = `data:${this.user.ppType};base64,${this.user.pp}`;
+    });
   }
   addStudent(){
     this.router.navigate(['addStudent'], {relativeTo:this.route, queryParams:this.user, replaceUrl:true});

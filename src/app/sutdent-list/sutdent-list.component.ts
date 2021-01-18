@@ -12,7 +12,7 @@ import { UserService } from '../user.service';
 })
 export class SutdentListComponent implements OnInit {
   user:any;
-  students:IStudent[]= [];
+  students:any;
   constructor(
     private route : ActivatedRoute,
     private router: Router,
@@ -25,19 +25,19 @@ export class SutdentListComponent implements OnInit {
     this.route.queryParams.subscribe(params=>this.user = params);
     this._service.getStudentByUserId(this.user.id)
         .subscribe(data=>{this.students = data;
-          console.log(this.students[0].address.city); 
         });  
   }
   getStudentDetail(id:String){
-    let student:IStudent;
-    this.students.forEach(data=>{
-      if(data.id == id){
-        student = data;
-        console.log("from student list:"+data.address.city);
-        console.log("from student list:"+student.address.city);       
-        this.router.navigate(['user/studentDetail'],{queryParams:student, replaceUrl:true});
-      }
-    })
+    // let studentId;
+    // for(let i=0; i<this.students.length; i++){
+    //   if(this.students[i].id == id){
+    //     studentId = this.students[i];
+    //     console.log("from student list:"+this.students[i].location.city);
+    //     console.log("id: "+)      
+        this.router.navigate(['user/studentDetail'],{queryParams:{id:id}, replaceUrl:true});
+    //   }
+    // }
+
    
   }
 

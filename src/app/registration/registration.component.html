@@ -22,6 +22,14 @@
                 <tr *ngIf="showUserForm">
                     <div>
                         <form #registerMap="ngForm" (ngSubmit)="collectUserData(registerMap)">
+
+                            <div class="row mb-3">
+                                <label for="pp" class="col-sm-2 col-form-label">Upload Profile Pic</label>
+                                <div class="col-sm-10">
+                                  <input type="file" (change)="onSelect($event)" name="pp" id="pp" class="form-control" ngModel>
+                                </div>
+                              </div>
+
                             <div class="row mb-3">
                                 <label for="name" class="col-sm-2 col-form-label">Full name:</label>
                                 <div class="col-sm-10">
@@ -105,11 +113,12 @@
                 </tr>
 
                 <tr *ngIf="showTeacherForm">   
-                    <app-add-teacher [user]="user"></app-add-teacher>
+                    <app-add-teacher [user]="user" [pp]="pp"></app-add-teacher>
                 </tr>
             </tbody>
         </table>
     </div>
+    <app-footer></app-footer>
 </body>
 
 </html>

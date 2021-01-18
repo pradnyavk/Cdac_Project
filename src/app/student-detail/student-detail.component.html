@@ -1,4 +1,6 @@
+<div *ngIf="student">
 <p>{{student.studentName}}</p>
+</div>
 <form #formref="ngForm" (ngSubmit)="getTeachers(formref)">
     Enter your subject:
     <input type="text" name="subject" ngModel><br>
@@ -15,6 +17,6 @@
 </ul>
 
 
-<div>
+<div *ngIf="student">
     <app-hired-teacher-list [studentId]="student.id"></app-hired-teacher-list>
 </div>

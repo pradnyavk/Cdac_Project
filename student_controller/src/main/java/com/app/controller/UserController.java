@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -62,23 +63,50 @@ public class UserController {
 		}
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
-	@PostMapping(
-			consumes = {org.springframework.http.MediaType.APPLICATION_JSON_VALUE}
-			)
+	
+	
+	@PostMapping
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<?> saveUser(@RequestBody User user){
+	public ResponseEntity<?> saveUser(@RequestBody  User user){
        logger.info("insde save user scope");
 		User user1 = null;
 		try {
 			logger.info("start saving .....");
 			user1 = dao.saveUser(user);
 			logger.info("out of scope");
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 			 logger.error("Something wrong ...."+ e.getStackTrace());
 			return new ResponseEntity<String>("Error while saving", HttpStatus.EXPECTATION_FAILED);
 		}
 		return new ResponseEntity<>(user1, HttpStatus.OK);
 	}
+	
+	
+	@PostMapping("/withPP")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> saveUser(@RequestParam  String user, @RequestParam MultipartFile pp){
+       logger.info("insde save user scope pp");
+		User user1 = null;
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			user1 = mapper.readValue(user, User.class);
+			logger.info("userdeserialize");
+			user1.setPp(pp.getBytes());
+			user1.setPpType(pp.getContentType());
+			logger.info("start saving .....");
+			user1 = dao.saveUser(user1);
+			logger.info("out of scope");
+		} catch (Exception e) {
+			e.printStackTrace();
+			 logger.error("Something wrong ...."+ e.getStackTrace());
+			return new ResponseEntity<String>("Error while saving", HttpStatus.EXPECTATION_FAILED);
+		}
+		return new ResponseEntity<>(user1, HttpStatus.OK);
+	}
+	
+	
 	@PutMapping("/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> updateUser(@RequestBody User user){
@@ -133,9 +161,9 @@ public class UserController {
 		return new ResponseEntity<String>("invalid Email or password", HttpStatus.NO_CONTENT);
 	}
 	
-	@PutMapping("/{id}/addStudent")
+	@PutMapping(value="/{id}/addStudent")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<?> addStudent(@RequestBody Student student, @PathVariable String id){
+	public ResponseEntity<?> addStudent(@RequestParam String student,  @PathVariable String id){
 		logger.info("addStudent function started");
 		User user = null;
 		List<Student> ls = new ArrayList<Student>();
@@ -143,10 +171,14 @@ public class UserController {
 		System.out.println(id1);
 		
 		  try { 
+			  
+			  ObjectMapper mapper = new ObjectMapper();
+			  mapper.registerModule(new JavaTimeModule());
+			  Student s1 = mapper.readValue(student, Student.class);
 			  logger.info("searchind user....");
 			  user = dao.findUserById(id1);
 			  logger.info("user found");
-			  user.addStudent(student); 
+			  user.addStudent(s1); 
 			  user = dao.saveUser(user);
 			  logger.info("student added successfully");
 			  ls = user.getStudents();
@@ -154,7 +186,8 @@ public class UserController {
 				  s.setUserName(null);
 			  }
 			  logger.info("out of AddStudent scope");
-		 } catch(RuntimeException e) {
+		 } catch(Exception e) {
+			 e.printStackTrace();
 			 logger.error("Something wrong ...."+ e.getStackTrace());
 		      return new  ResponseEntity<List<Student>>(ls, HttpStatus.EXPECTATION_FAILED); 
 		 }
@@ -180,7 +213,8 @@ public class UserController {
 			logger.info("user found");
 			u.addTeacher(teacher);
 			logger.info("teacher added successfully");
-			dao.save(u);
+		    User u1 = dao.save(u);
+		    teacher = u1.getTeachers().get(0);
 			logger.info("out of scope!!!!!");
 		}catch(Exception e) {
 			e.printStackTrace();

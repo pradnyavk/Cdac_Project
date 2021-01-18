@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
 })
 export class RegistrationComponent implements OnInit {
   user:any;
+  pp:any;
   showUserForm:boolean = true;
   showTeacherForm:boolean = false;
   constructor(
@@ -24,17 +25,24 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSelect(event:any){
+    this.pp = event.target.files[0];
+  }
+
   collectUserData(formvalue:NgForm){
-    var user:IUser = formvalue.value;
+    var user = formvalue.value;
     console.log(user);
     if(user.profile.match("TEACHER")){
       this.user = user;
+      this.user.pp= undefined;
       this.showUserForm = false;
       this.showTeacherForm = true;
     }
     else{
      user.role ="USER";
-    this._userService.saveUser(user)
+     this.user = user;
+     this.user.pp = undefined;
+    this._userService.saveUser(this.user, this.pp)
     .subscribe(data=>console.log(data));
     this.rouer.navigate(["login"]);
     }

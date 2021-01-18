@@ -11,6 +11,7 @@ import { TeacherService } from '../teacher.service';
 export class TeacherDetailComponent implements OnInit {
   user:any;
   teacher:any;
+  imageData:any;
   constructor(
     private route:ActivatedRoute,
     private router: Router,
@@ -22,7 +23,9 @@ export class TeacherDetailComponent implements OnInit {
     this.route.queryParams.subscribe(data=>{
       this.user = data;
       this._teacherService.getTeachersByUserId(this.user.id)
-      .subscribe(data =>this.teacher = data);
+      .subscribe(data =>{this.teacher = data;
+        this.imageData = `data:${this.user.ppType};base64,${this.user.pp}`;
+      });
     });
   }
 

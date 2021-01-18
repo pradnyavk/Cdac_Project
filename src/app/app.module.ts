@@ -15,6 +15,8 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
 import { JobApplicationsComponent } from './job-applications/job-applications.component';
 import { AuthGuard } from './auth.guard';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AuthGuard } from './auth.guard';
     AddTeacherComponent,
     TeacherListComponent,
     TeacherDetailComponent,
-    JobApplicationsComponent
+    JobApplicationsComponent,
+    ContactUsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -62,7 +62,7 @@ public class TeacherService {
 		tc.setStatus(false);
 		tc.setCourse(c1);
 		t.addTeacherCourse(tc);
-		return dao.save(t);
+		return t;
 	}
 
 	public ArrayList<Teacher> getTeacherListWithFalseStatus() {

@@ -26,11 +26,12 @@ export class AddStudentComponent implements OnInit {
   }
 
   onSubmit(studentData:NgForm){
-    var student:IStudent = studentData.value;
+    var student= studentData.value;
+    console.log(student);
      this._service.addStudent(this.user.id, student)
          .subscribe((data)=>{
            console.log(data);
-           this.user.students = data;
+          //  this.user.students = data;
            this.router.navigate(['user'],{queryParams:this.user});
          }); 
   }

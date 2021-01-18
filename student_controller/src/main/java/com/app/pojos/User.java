@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -36,8 +37,13 @@ public class User extends Base {
 	@Column(name="profile")
 	@Enumerated(EnumType.STRING)
 	private Profile profile;
-	
-	
+	  
+	  @Lob
+	  @Column(name="profile_pic")
+	  private byte[] pp;
+	  
+	  @Column(name="ppType")
+	  private String ppType;
 	
 	@OneToMany(mappedBy = "userName", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Teacher> teachers = new ArrayList<Teacher>();
@@ -60,6 +66,22 @@ public class User extends Base {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+	}
+	
+	public byte[] getPp() {
+		return pp;
+	}
+
+	public void setPp(byte[] pp) {
+		this.pp = pp;
+	}
+
+	public String getPpType() {
+		return ppType;
+	}
+
+	public void setPpType(String ppType) {
+		this.ppType = ppType;
 	}
 
 	public String getName() {

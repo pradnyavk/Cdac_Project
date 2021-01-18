@@ -14,8 +14,8 @@ import { TeacherService } from '../teacher.service';
   styleUrls: ['./student-detail.component.css']
 })
 export class StudentDetailComponent implements OnInit {
-  student:IStudent=<IStudent>{};
-  teachers:ITeacher[]=[];
+  student:any;
+  teachers:any;
   searcheSubject:String= new String();
   constructor(
     private router: Router,
@@ -28,14 +28,18 @@ export class StudentDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(param=>this.student =<IStudent>param)
+    this.route.queryParams.subscribe(param=>{
+      this._service.getStudentById(param.id).subscribe(data=>{this.student = data});
+    })
   }
 
   getTeachers(formref:NgForm){
     var subject = formref.value.subject;
     this.searcheSubject = subject;
-    console.log(this.student.address);
-    this._teacherService.getTeachersBySubjectAndAdd(subject, "maha","pune")
+    console.log(subject);
+    console.log(this.student.location.state);
+    console.log(this.student.location.city);
+    this._teacherService.getTeachersBySubjectAndAdd(subject, this.student.location.state,this.student.location.city)
           .subscribe(data=>this.teachers = data);
   }
 
