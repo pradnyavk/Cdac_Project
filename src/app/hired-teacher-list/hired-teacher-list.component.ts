@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AdminService } from '../admin.service';
 import { ITeacher } from '../model/teacher';
 import { StudentServiceService } from '../student-service.service';
 import { TeacherService } from '../teacher.service';
@@ -12,8 +13,10 @@ export class HiredTeacherListComponent implements OnInit {
 
   @Input() studentId:any;
   teachers:ITeacher[] = [];
+  teacherCourse:any;
   constructor(
-    private _service: TeacherService
+    private _service: TeacherService,
+   
   ) {  
   }
 
@@ -26,9 +29,12 @@ export class HiredTeacherListComponent implements OnInit {
     this._service.getTeachersWhereStudentId(this.studentId)
     .subscribe(data => this.teachers = data);
   }
+
   removeTeacher(teacherId:String){
     console.log("inside")
     this._service.removeTeacherWhereTeacherId(teacherId, this.studentId)
          .subscribe(data=>console.log(data));
   }
+
+  
 }
