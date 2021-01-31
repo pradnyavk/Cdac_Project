@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { StudentTeacherService } from '../student-teacher.service';
 
 @Component({
   selector: 'app-admin',

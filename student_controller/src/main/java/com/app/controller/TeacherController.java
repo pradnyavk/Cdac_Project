@@ -34,16 +34,17 @@ public class TeacherController {
 	private TeacherService dao;
 
 	public TeacherController() {
-		System.out.println("inside teacher Controller..");
+		logger.info("Teacher Controller constructor Initiated @@");
 	}
 
 	@GetMapping("/list")
 	public ResponseEntity<?> findAllTeacher() {
-		System.out.println("inside findAllTeacher");
+	    logger.info("===============finding all teacher===================");
 		List<Teacher> ls = new ArrayList<>();
 		try {
 			ls = dao.findAllTeacher();
 		} catch (RuntimeException e) {
+			logger.error("Something wrong while finding all teacher: "+e.getMessage());
 			return new ResponseEntity<String>("no result found", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<>(ls, HttpStatus.OK);
@@ -58,6 +59,7 @@ public class TeacherController {
 		try {
 			t = dao.findTeacherById(id1);
 		} catch (RuntimeException e) {
+			logger.error("Something wrong while finding teacher by id: "+e.getMessage());
 			return new ResponseEntity<String>("no result found", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<Teacher>(t, HttpStatus.OK);
@@ -73,6 +75,7 @@ public class TeacherController {
 		try {
 			t1 = dao.saveTeacher(t);
 		} catch (RuntimeException e) {
+			logger.error("Something wrong while saving teacher: "+e.getMessage());
 			e.printStackTrace();
 			return new ResponseEntity<String>("Error while saving", HttpStatus.NO_CONTENT);
 		}
@@ -91,6 +94,7 @@ public class TeacherController {
 				dao.saveTeacher(t1);
 			}
 		} catch (RuntimeException e) {
+			logger.error("Something wrong while updating teacher: "+e.getMessage());
 			return new ResponseEntity<>("Error while updating.. try again", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<>("data updated successfully..", HttpStatus.OK);
@@ -104,6 +108,7 @@ public class TeacherController {
 		try {
 			t1 = dao.deleteById(id1);
 		} catch (RuntimeException e) {
+			logger.error("Something wrong while deleting teacher : "+e.getMessage());
 			return new ResponseEntity<>("Error while Deleting", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<>(t1, HttpStatus.OK);
@@ -142,12 +147,15 @@ public class TeacherController {
 			t = dao.findTeacherById(id1);
 			t.addSession(session);
 		} catch (RuntimeException e) {
+			logger.error("Something wrong while adding session "+e.getMessage());
 			return new ResponseEntity<Teacher>(t, HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<Teacher>(t, HttpStatus.OK);
 
 	}
 
+	
+// find all teacher where user id is id
 	@GetMapping("/list/user/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> getStudentsWhereUser(@PathVariable String id) {
@@ -156,6 +164,7 @@ public class TeacherController {
 		try {
 			teachers = dao.findAllTeacherByUserId(id1);
 		} catch (Exception e) {
+			logger.error("Something wrong while getting teacher by user id"+e.getMessage());
 			e.printStackTrace();
 			return new ResponseEntity<List<Teacher>>(teachers, HttpStatus.NO_CONTENT);
 		}
@@ -169,12 +178,17 @@ public class TeacherController {
 		try {
 			teachers = dao.getTeachersBySubjectAndAdd(state, city);	
 		} catch (Exception e) {
+			logger.error("Something wrong while getting teacher using add and sube: "+e.getMessage());
 			e.printStackTrace();
 			return new ResponseEntity<List<Teacher>>(teachers, HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Teacher>>(teachers, HttpStatus.OK);
 	}
-    
+ 
+	
+	
+//  add course to teacher in course_teacher table
+	
 	@PostMapping("/addCourse/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> addCourseToTeacher(@RequestParam String course, @PathVariable String id){
@@ -197,7 +211,9 @@ public class TeacherController {
 		}
 		return new ResponseEntity<Teacher>(HttpStatus.OK);
 	}
+
 	
+// searcher new registered teacher
 	@GetMapping("/falseStatus")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> teacherListWithFalseStatus(){
@@ -216,7 +232,7 @@ public class TeacherController {
 		return new ResponseEntity<ArrayList<Teacher>>(al, HttpStatus.OK);
 	}
 	
-	
+// confirm new registered teacher passing id of that teacher
 	@GetMapping("/confirmTeacher/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> confirmTeacherStatus(@PathVariable String id){
@@ -233,7 +249,10 @@ public class TeacherController {
 		}
 		return new ResponseEntity<ArrayList<Teacher>>(al,HttpStatus.OK);
 	}
-	
+
+
+//to reject new registered teacher
+//===>>> also remove user associated with this teacher and send mail to registered email..... 
 	@GetMapping("/remove/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> removeteacher(@PathVariable String id){

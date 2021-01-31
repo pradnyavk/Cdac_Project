@@ -14,7 +14,7 @@ import com.app.pojos.Teacher;
 
 public interface StudentTeacherRepo extends JpaRepository<StudentTeacher, Long>{
 	
-	@Query("select tc.teacher from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher where s.id = ?1")
+	@Query("select tc.teacher from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher where s.id = ?1 and st.status = true")
 	public ArrayList<Teacher> findTeachersOfStudentId(long id);
     @Query("select st from StudentTeacher st where st.status = false")
 	public ArrayList<StudentTeacher> findStudnetTeacherWhereStatusIsNuLL();
@@ -26,8 +26,8 @@ public interface StudentTeacherRepo extends JpaRepository<StudentTeacher, Long>{
 	@Query("select s from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher t where t.id = ?1")
 	public ArrayList<Student> findStudentListByTeacherId(long id);
 	
-//	@Query("")
-//	public void removeStudentFromTeacher(long stId, long tId);
+	@Query("select st from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher t where s.id = ?1 and t.id = ?2")
+	public StudentTeacher getStudentTeacherByStudentIdAndTeacherId(long stId, long tId);
 	
 
 //	@Transactional

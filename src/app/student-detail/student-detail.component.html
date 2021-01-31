@@ -1,6 +1,9 @@
 <div *ngIf="student">
-<p>{{student.studentName}}</p>
+    <p>{{student.studentName}}</p>
 </div>
+
+<!-- searche teacher by entering subject name -->
+<!-- === here we can dynamically fech the subjects  and show to user ot restrict them entring out of scope subj -->
 <form #formref="ngForm" (ngSubmit)="getTeachers(formref)">
     Enter your subject:
     <input type="text" name="subject" ngModel><br>
@@ -12,11 +15,11 @@
         <span>{{item.teacherName}} </span>
         <span>{{item.email}} </span>
         <span>{{item.age}} </span>
-        <button (click)="addTeacher(item.id)">Hire</button>
+        <button (click)="hireTeacher(item.id)">Hire</button>
     </li>
 </ul>
 
-
+<!-- child component hired Teacher List for the student -->
 <div *ngIf="student">
     <app-hired-teacher-list [studentId]="student.id"></app-hired-teacher-list>
 </div>

@@ -12,7 +12,7 @@ import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { compileComponentFromMetadata } from '@angular/compiler';
 import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './services/auth.guard';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [

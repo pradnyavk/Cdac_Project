@@ -2,6 +2,8 @@ package com.app.controller;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +25,15 @@ import com.app.service.StudentTeacherService;
 @CrossOrigin
 public class StudentTeacherController {
 	
+	Logger logger =  LoggerFactory.getLogger(StudentTeacherController.class);
+	
 	@Autowired
 	private StudentTeacherService dao;
 	@Autowired
 	private StudentService dao1;
 	
 	public StudentTeacherController() {
-		System.out.println("this is student Teacher controller");
+		logger.info("StudentTeacher constructor initiated @@@");
 	}
 	
 	
@@ -87,16 +91,18 @@ public class StudentTeacherController {
 		 return new ResponseEntity<ArrayList<Student>>(st, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/removeStudent/{studentId}/{teacherId}")
+	@GetMapping("/removeStudentTeacher/{teacherId}/{studentId}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> removeStudentfromteacher(@PathVariable String studentId, @PathVariable String teacherId){
 		long stId  = Long.parseLong(studentId);
 		long tId = Long.parseLong(teacherId);
 		try {
 			dao.removeStudentFromTeacher(stId, tId);
+			dao.findTeachersOfStudentId(stId);
 		}catch (RuntimeException e) {
 			 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		 return new ResponseEntity<ArrayList<Student>>(HttpStatus.OK);
+		 return new ResponseEntity<ArrayList<Teacher>>(dao.findTeachersOfStudentId(stId),HttpStatus.OK);
 	}
 	
 }
