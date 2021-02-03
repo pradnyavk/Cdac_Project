@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="teachers")
-@JsonIgnoreProperties(value = {"sessions"})
+@JsonIgnoreProperties(value = {"sessions", "teacherCourse"})
 public class Teacher extends Base{
 	  @Column(name="teacher_name")
 	   private String teacherName;

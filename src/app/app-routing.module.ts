@@ -12,7 +12,8 @@ import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { compileComponentFromMetadata } from '@angular/compiler';
 import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './services/auth.guard';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'dashboard', pathMatch:'full'},
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path:'teacher', component:TeacherDetailComponent, canActivate:[AuthGuard]},
   {path:'dashboard', component:DashboardComponent},
   {path:'login', component:LoginComponent},
-  {path:'register', component:RegistrationComponent}
+  {path:'register', component:RegistrationComponent},
+  {path:'contactUs', component:ContactUsComponent}
   //{path:'**', component:}
 ];
 
@@ -37,4 +39,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponent=[DashboardComponent, LoginComponent, RegistrationComponent, AdminComponent, UserComponent, AddStudentComponent,SutdentListComponent, StudentDetailComponent, TeacherListComponent, TeacherDetailComponent, AddTeacherComponent]
+export const RoutingComponent=[DashboardComponent, LoginComponent, RegistrationComponent, AdminComponent, UserComponent, AddStudentComponent,SutdentListComponent, StudentDetailComponent, TeacherListComponent, TeacherDetailComponent, AddTeacherComponent, ContactUsComponent]

@@ -1,0 +1,58 @@
+2021-01-31 05:34:03,716 INFO com.app.controller.UserController [restartedMain] UserController constructor@@
+2021-01-31 12:20:29,927 INFO com.app.controller.TeacherController [restartedMain] Teacher Controller constructor Initiated @@
+2021-01-31 12:20:29,991 INFO com.app.controller.UserController [restartedMain] User Controller constructor Initiated @@
+2021-01-31 12:25:10,370 INFO com.app.controller.TeacherController [restartedMain] Teacher Controller constructor Initiated @@
+2021-01-31 12:25:10,398 INFO com.app.controller.UserController [restartedMain] User Controller constructor Initiated @@
+2021-01-31 12:25:28,114 INFO com.app.controller.TeacherController [restartedMain] Teacher Controller constructor Initiated @@
+2021-01-31 12:25:28,135 INFO com.app.controller.UserController [restartedMain] User Controller constructor Initiated @@
+2021-01-31 12:41:55,002 INFO com.app.controller.TeacherController [restartedMain] Teacher Controller constructor Initiated @@
+2021-01-31 12:41:55,037 INFO com.app.controller.UserController [restartedMain] User Controller constructor Initiated @@
+2021-01-31 13:18:51,299 INFO com.app.controller.StudentTeacherController [restartedMain] StudentTeacher constructor initiated @@@
+2021-01-31 13:18:51,330 INFO com.app.controller.TeacherController [restartedMain] Teacher Controller constructor Initiated @@
+2021-01-31 13:18:51,362 INFO com.app.controller.UserController [restartedMain] User Controller constructor Initiated @@
+2021-01-31 13:27:28,161 INFO com.app.controller.UserController [http-nio-8080-exec-1] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 13:27:29,463 INFO com.app.controller.UserController [http-nio-8080-exec-2] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 13:27:31,882 INFO com.app.controller.UserController [http-nio-8080-exec-2] verification done !!!!!!
+2021-01-31 13:27:31,882 INFO com.app.controller.UserController [http-nio-8080-exec-1] verification done !!!!!!
+2021-01-31 13:31:30,078 INFO com.app.controller.UserController [http-nio-8080-exec-2] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 13:31:30,082 INFO com.app.controller.UserController [http-nio-8080-exec-2] verification done !!!!!!
+2021-01-31 13:33:36,009 INFO com.app.controller.UserController [http-nio-8080-exec-6] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 13:33:36,013 INFO com.app.controller.UserController [http-nio-8080-exec-6] verification done !!!!!!
+2021-01-31 13:34:28,630 INFO com.app.controller.UserController [http-nio-8080-exec-4] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 13:34:28,634 INFO com.app.controller.UserController [http-nio-8080-exec-4] verification done !!!!!!
+2021-01-31 13:35:00,191 INFO com.app.controller.UserController [http-nio-8080-exec-4] ================login request{} time of User kparanav50@gmail.com is : 2021-01-31=========
+2021-01-31 13:35:00,194 INFO com.app.controller.UserController [http-nio-8080-exec-4] verification done !!!!!!
+2021-01-31 13:35:03,350 INFO com.app.controller.TeacherController [http-nio-8080-exec-5] list fatching.....
+2021-01-31 13:35:03,424 INFO com.app.controller.TeacherController [http-nio-8080-exec-5] done fetching
+2021-01-31 13:35:33,551 INFO com.app.controller.TeacherController [http-nio-8080-exec-10] list fatching.....
+2021-01-31 13:35:33,557 INFO com.app.controller.TeacherController [http-nio-8080-exec-10] done fetching
+2021-01-31 13:37:24,892 INFO com.app.controller.UserController [http-nio-8080-exec-9] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 13:37:24,895 INFO com.app.controller.UserController [http-nio-8080-exec-9] verification done !!!!!!
+2021-01-31 13:40:52,164 INFO com.app.controller.StudentTeacherController [restartedMain] StudentTeacher constructor initiated @@@
+2021-01-31 13:40:52,175 INFO com.app.controller.TeacherController [restartedMain] Teacher Controller constructor Initiated @@
+2021-01-31 13:40:52,195 INFO com.app.controller.UserController [restartedMain] User Controller constructor Initiated @@
+2021-01-31 13:41:42,159 INFO com.app.controller.StudentTeacherController [restartedMain] StudentTeacher constructor initiated @@@
+2021-01-31 13:41:42,167 INFO com.app.controller.TeacherController [restartedMain] Teacher Controller constructor Initiated @@
+2021-01-31 13:41:42,187 INFO com.app.controller.UserController [restartedMain] User Controller constructor Initiated @@
+2021-01-31 13:52:32,981 INFO com.app.controller.UserController [http-nio-8080-exec-8] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 13:52:32,995 INFO com.app.controller.UserController [http-nio-8080-exec-8] verification done !!!!!!
+2021-01-31 13:54:56,451 INFO com.app.controller.UserController [http-nio-8080-exec-1] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 13:54:56,454 INFO com.app.controller.UserController [http-nio-8080-exec-1] verification done !!!!!!
+2021-01-31 13:58:27,470 INFO com.app.controller.UserController [http-nio-8080-exec-6] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 13:58:27,474 INFO com.app.controller.UserController [http-nio-8080-exec-6] verification done !!!!!!
+2021-01-31 14:04:24,705 INFO com.app.controller.UserController [http-nio-8080-exec-8] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 14:04:24,773 INFO com.app.controller.UserController [http-nio-8080-exec-8] verification done !!!!!!
+2021-01-31 14:06:22,162 INFO com.app.controller.UserController [http-nio-8080-exec-10] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 14:06:22,220 INFO com.app.controller.UserController [http-nio-8080-exec-10] verification done !!!!!!
+2021-01-31 14:13:02,510 INFO com.app.controller.UserController [http-nio-8080-exec-2] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 14:13:02,822 INFO com.app.controller.UserController [http-nio-8080-exec-2] verification done !!!!!!
+2021-01-31 14:19:32,296 INFO com.app.controller.UserController [http-nio-8080-exec-4] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 14:19:32,476 INFO com.app.controller.UserController [http-nio-8080-exec-4] verification done !!!!!!
+2021-01-31 14:29:01,568 INFO com.app.controller.UserController [http-nio-8080-exec-7] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 14:29:01,590 INFO com.app.controller.UserController [http-nio-8080-exec-7] verification done !!!!!!
+2021-01-31 14:29:58,862 INFO com.app.controller.UserController [http-nio-8080-exec-9] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 14:29:58,950 INFO com.app.controller.UserController [http-nio-8080-exec-9] verification done !!!!!!
+2021-01-31 14:35:30,891 INFO com.app.controller.UserController [http-nio-8080-exec-2] ================login request{} time of User pranav@gmail.com is : 2021-01-31=========
+2021-01-31 14:35:30,894 INFO com.app.controller.UserController [http-nio-8080-exec-2] verification done !!!!!!
+2021-01-31 14:42:57,224 INFO com.app.controller.UserController [http-nio-8080-exec-6] ================login request{} time of User rahul728@gmail.com is : 2021-01-31=========
+2021-01-31 14:42:57,397 INFO com.app.controller.UserController [http-nio-8080-exec-6] verification done !!!!!!

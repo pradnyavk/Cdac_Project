@@ -13,8 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="teacher_course")
+@JsonIgnoreProperties(value = {"studentTeacher"})
 public class TeacherCourse extends Base {
 	
 	@ManyToOne
@@ -76,6 +79,11 @@ public class TeacherCourse extends Base {
 
 	public void setJoiningDate(LocalDate joiningDate) {
 		this.joiningDate = joiningDate;
+	}
+
+	@Override
+	public String toString() {
+		return "TeacherCourse [teacher=" + teacher + ", course=" + course + ", status=" + status + ", joiningDate=" + joiningDate + "]";
 	}
 	
 	

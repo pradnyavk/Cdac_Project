@@ -54,7 +54,9 @@ public class StudentTeacherService {
 	}
 
 	public void removeStudentFromTeacher(long stId, long tId) {
-//		dao.removeStudentFromTeacher( stId,  tId);
+		StudentTeacher st = new StudentTeacher();
+		st = dao.getStudentTeacherByStudentIdAndTeacherId( stId,  tId);
+		dao.delete(st);
 	}
 	
 }

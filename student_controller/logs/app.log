@@ -1,0 +1,6 @@
+2021-01-31 05:11:52,869 INFO com.app.StudentControllerApplication [restartedMain] Starting StudentControllerApplication using Java 1.8.0_221 on DESKTOP-MPGNAV9 with PID 4660 (C:\Users\Rubin\eclipse-workspace\Mamcode\student_controller\target\classes started by Rubin in C:\Users\Rubin\eclipse-workspace\Mamcode\student_controller)
+2021-01-31 05:11:52,904 DEBUG com.app.StudentControllerApplication [restartedMain] Running with Spring Boot v2.4.0, Spring v5.3.1
+2021-01-31 05:11:52,904 INFO com.app.StudentControllerApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-01-31 05:11:57,804 INFO com.app.controller.UserController [restartedMain] UserController constructor@@
+2021-01-31 05:12:13,282 INFO com.app.StudentControllerApplication [restartedMain] Started StudentControllerApplication in 21.067 seconds (JVM running for 22.601)
+2021-01-31 05:19:49,568 INFO com.app.controller.UserController [restartedMain] UserController constructor@@

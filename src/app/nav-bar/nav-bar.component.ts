@@ -14,12 +14,18 @@ export class NavBarComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(
+    
+  ): void {
   }
  
   logOut(){
     localStorage.removeItem("user")
     this.router.navigate(["/dashboard"])
+  }
+
+  contactUs(){
+    this.router.navigate(["/contactUs"])
   }
   
 

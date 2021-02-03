@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentServiceService } from '../student-service.service';
-import { TeacherService } from '../teacher.service';
+import { StudentServiceService } from '../services/student-service.service';
+import { TeacherService } from '../services/teacher.service';
 
 @Component({
   selector: 'app-teacher-detail',
@@ -11,6 +11,7 @@ import { TeacherService } from '../teacher.service';
 export class TeacherDetailComponent implements OnInit {
   user:any;
   teacher:any;
+  imageData:any;
   constructor(
     private route:ActivatedRoute,
     private router: Router,
@@ -20,9 +21,11 @@ export class TeacherDetailComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe(data=>{
-      this.user = data;
+      let user:string = <string>localStorage.getItem('user')
+      this.user = JSON.parse(user);
+      this.imageData = `data:${this.user.ppType};base64,${this.user.pp}`;
       this._teacherService.getTeachersByUserId(this.user.id)
-      .subscribe(data =>this.teacher = data);
+      .subscribe(data =>{this.teacher = data; });
     });
   }
 

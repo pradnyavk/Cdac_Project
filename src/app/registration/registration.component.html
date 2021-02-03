@@ -8,7 +8,13 @@
 </head>
 
 <body>
+
+    <!-- navigatin bar -->
+
     <app-nav-bar></app-nav-bar>
+
+    <!-- registration form  -->
+    
     <div class="box1">
         <table class="table table-striped">
             <thead>
@@ -22,18 +28,20 @@
                 <tr *ngIf="showUserForm">
                     <div>
                         <form #registerMap="ngForm" (ngSubmit)="collectUserData(registerMap)">
+
+                            <div class="row mb-3">
+                                <label for="pp" class="col-sm-2 col-form-label">Upload Profile Pic</label>
+                                <div class="col-sm-10">
+                                  <input type="file" (change)="onSelect($event)" name="pp" id="pp" class="form-control" ngModel>
+                                </div>
+                              </div>
+
                             <div class="row mb-3">
                                 <label for="name" class="col-sm-2 col-form-label">Full name:</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="name" name="name" ngModel>
                                 </div>
                             </div>
-                            <!-- <div *ngIf="name && name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-
-                                <div *ngIf="name && name.errors.required">
-                                    Name is required.
-                                </div>
-                            </div> -->
 
                             <div class="row mb-3">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
@@ -41,12 +49,7 @@
                                     <input type="email" class="form-control" id="inputEmail3" name="email" ngModel>
                                 </div>
                             </div>
-                            <!-- <div *ngIf=" email && email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-                                <div *ngIf="email && email.errors.required">
-                                    Email is required.
-                                </div>
-                            </div> -->
-
+           
 
                             <div class="row mb-3">
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
@@ -55,14 +58,6 @@
                                         ngModel>
                                 </div>
                             </div>
-                            <!-- <div *ngIf="password && password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-                                <div *ngIf="password && password.errors.required">
-                                    password is required.
-                                </div>
-                                <div *ngIf="password &&(password.errors.minlength || password.errors.maxlength)">
-                                    length of password should be 4-15
-                                </div>
-                            </div> -->
 
                             <div class="row mb-3">
                                 <label for="gender" class="col-sm-2 col-form-label">Gender</label>
@@ -75,11 +70,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- <div *ngIf="gender && gender.invalid && (gender.dirty || gender.touched)" class="alert alert-danger">
-                                <div *ngIf="gender && gender.errors.required">
-                                    gender is required.
-                                </div>
-                            </div> -->
+
                             <fieldset class="row mb-3">
                                 <legend class="col-form-label col-sm-2 pt-0">Profile</legend>
                                 <div class="col-sm-10">
@@ -104,12 +95,16 @@
                     </div>
                 </tr>
 
+                <!-- if registraion is for teacher than it will show this section which include addTeacher component -->
                 <tr *ngIf="showTeacherForm">   
-                    <app-add-teacher [user]="user"></app-add-teacher>
+                    <app-add-teacher [user]="user" [pp]="pp"></app-add-teacher>
                 </tr>
+
+                
             </tbody>
         </table>
     </div>
+    <app-footer></app-footer>
 </body>
 
 </html>

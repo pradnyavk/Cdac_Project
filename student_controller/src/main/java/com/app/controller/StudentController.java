@@ -62,6 +62,7 @@ public class StudentController {
 		long id1 = Long.parseLong(id);
 		try {
 		student = dao.findStudentById(id1);
+		System.out.println(student);
 		}catch(RuntimeException e) {
 			return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
 		}	
@@ -158,6 +159,9 @@ public class StudentController {
 		long id1 = Long.parseLong(id);
 		try {
 			students = dao.findAllStudentByUserId(id1);
+			for(Student s : students) {
+				System.out.println(s);
+			}
 		} catch (Exception e) {
 			return new ResponseEntity<List<Student>>(students, HttpStatus.NO_CONTENT);
 		}

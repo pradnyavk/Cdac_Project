@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IStudent } from '../model/student';
-import { IUser } from '../model/user';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-addStudent',
@@ -12,25 +10,25 @@ import { UserService } from '../user.service';
 })
 export class AddStudentComponent implements OnInit {
   id:String="";
-  students:any;
+  // getting user data as query param from user component 
   user:any;
   constructor(
     private route: ActivatedRoute,
-    private _service:UserService,
+    private _userService:UserService,
     private router:Router
     ) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params=>this.user = params);
-   // console.log(this.user.id);
+    let user:string = <string>localStorage.getItem('user')
+    this.user = JSON.parse(user);
   }
 
   onSubmit(studentData:NgForm){
-    var student:IStudent = studentData.value;
-     this._service.addStudent(this.user.id, student)
+    var student= studentData.value;
+     this._userService.addStudent(this.user.id, student)
          .subscribe((data)=>{
-           console.log(data);
-           this.user.students = data;
+          // ======look into this section need to change
+          // == i think no need to calll user component again
            this.router.navigate(['user'],{queryParams:this.user});
          }); 
   }

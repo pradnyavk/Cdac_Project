@@ -38,8 +38,7 @@ export class TeacherService {
   }
   addCourseToTeacher(id: any, course: any) {
     let uploadData = new FormData();
-    uploadData.append("course",course);
-    console.log("inside service:"+ JSON.stringify(course));
+    uploadData.append("course", JSON.stringify(course));
     let url= "http://localhost:8080/teacher/addCourse/"+id;
     return this._http.post(url,uploadData, {responseType: 'text'});
   }

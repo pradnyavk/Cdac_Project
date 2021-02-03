@@ -1,9 +1,9 @@
 <app-nav-bar></app-nav-bar>
-<div class="container border">
-      <div class="row">
-          <div class="col-sm-4">
-              <div>
-                  pp
+<div class="container border" style="margin-top: 50px ;">
+      <div class="row" >
+          <div class="col-sm-6">
+              <div *ngIf="imageData">
+                  <img [src]="imageData" height="260px" width="260px" style="border-radius: 130px;" >
               </div>
               <div *ngIf="teacher" class="box">
                  <h3>Id: {{teacher[0].id}}</h3><h3>{{teacher[0].teacherName}}</h3>
@@ -12,7 +12,7 @@
                  <h3>Joining Date: {{teacher[0].joiningDate}}</h3>
               </div>
             </div>
-          <div class="col-sm-8">
+          <div class="col-sm-6">
             <div *ngIf="teacher[0].status; else elseBlock">
                 <button (click)="studentList(teacher.id)">StudentList</button>
                 <!-- <button (click)="studentDetail()">StudentDetail</button> -->
@@ -23,3 +23,4 @@
           </div>
       </div>
   </div>
+  <app-footer></app-footer>
