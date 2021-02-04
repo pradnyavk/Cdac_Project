@@ -24,9 +24,9 @@ export class StudentServiceService {
   saveStudent(student:{}){
     return this.http.post(this.url2, student);
   }
-  getStudentByUserId(id:String):Observable<IStudent[]>{
+  getStudentByUserId(id:String){
     var temp_url = this.url3+""+id;
-    return this.http.get<IStudent[]>(temp_url);
+    return this.http.get(temp_url);
   }
 
 }

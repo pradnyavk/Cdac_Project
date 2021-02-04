@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ITeacher } from '../model/teacher';
-import { StudentServiceService } from '../student-service.service';
-import { TeacherService } from '../teacher.service';
+import { TeacherService } from '../services/teacher.service';
 
 @Component({
   selector: 'app-hired-teacher-list',
@@ -9,26 +8,34 @@ import { TeacherService } from '../teacher.service';
   styleUrls: ['./hired-teacher-list.component.css']
 })
 export class HiredTeacherListComponent implements OnInit {
-
+  // child component of student Detail
+  // it will get studentId from studentDetail
   @Input() studentId:any;
+
+  // list of all teachers for this student
   teachers:ITeacher[] = [];
   constructor(
-    private _service: TeacherService
+    private _teacherService: TeacherService,
+   
   ) {  
   }
 
   ngOnInit(): void {
-      this._service.getTeachersWhereStudentId(this.studentId)
+      this._teacherService.getTeachersWhereStudentId(this.studentId)
       .subscribe(data => this.teachers = data);
   }
 
+  // it will get list of teacher for the sutdent id in student Detail
   getfrestList(){
-    this._service.getTeachersWhereStudentId(this.studentId)
+    this._teacherService.getTeachersWhereStudentId(this.studentId)
     .subscribe(data => this.teachers = data);
   }
+
+  // remove teacher form sutdent teacher list
   removeTeacher(teacherId:String){
-    console.log("inside")
-    this._service.removeTeacherWhereTeacherId(teacherId, this.studentId)
-         .subscribe(data=>console.log(data));
+    this._teacherService.removeTeacherWhereTeacherId(teacherId, this.studentId)
+         .subscribe(data=>this.teachers = <ITeacher[]>data);
   }
+
+  
 }
