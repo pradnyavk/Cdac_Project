@@ -52,6 +52,10 @@ public class StudentTeacherService {
 	public ArrayList<Student> findStudentListByTeacherId(long id) {
 		return dao.findStudentListByTeacherId(id);
 	}
+	
+	public ArrayList<Student> findStudentListByTeacherIdWithStatusIsFalse(long id) {
+		return dao.findStudentListByTeacherIdWithStatusIsFalse(id);
+	}
 
 	public void removeStudentFromTeacher(long stId, long tId) {
 		StudentTeacher st = new StudentTeacher();
