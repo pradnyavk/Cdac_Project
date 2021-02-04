@@ -1,0 +1,9 @@
+<p>job-applications works!</p>
+
+<ul *ngIf="teachers">
+    <li *ngFor="let item of teachers">
+        <span>{{item.teacherName}}</span>
+        <button (click)="confirmStatus(item.id)">hire</button>
+        <button (click)="reject(item.id)">reject</button>
+    </li>
+</ul>

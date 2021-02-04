@@ -1,28 +1,7 @@
-<div class="container">
-  
-        <div class="col-m-12">
-            
-            <h1>Enter Student Details</h1>
-
-            <form  #studentData="ngForm" (ngSubmit)="onSubmit(studentData)">
-                <div class="form-group">
-                <label for="studentName">Student Name</label>
-                <input class="form-control" type="text" name="studentName" id="studentName" ngModel>
-                </div>
-                <div class="form-group">
-                    <label for="dob">Date of Birth</label>
-                <input class="form-control" type="date" name="dob" id="dob" ngModel>
-            </div>
-            <div class="form-group">
-                <label for="email">Email id</label>
-                <input class="form-control" type="email" name="email" id="email" ngModel>
-            </div>
-            
-                <input class="btn btn-primary" type="submit" value="Add">
-            </form>
-
-        </div>
-
-
-    
-</div>
+<h1>Enter StudentDetail</h1>
+<form  #studentData="ngForm" (ngSubmit)="onSubmit(studentData)">
+    <input type="text" name="studentName" ngModel>
+    <input type="date" name="dob" ngModel>
+    <input type="email" name="email" ngModel>
+    <input type="submit" value="Add">
+</form>

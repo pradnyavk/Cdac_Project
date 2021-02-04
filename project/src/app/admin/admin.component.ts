@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StudentTeacherService } from '../student-teacher.service';
 
 @Component({
   selector: 'app-admin',
@@ -6,10 +8,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
-  constructor() { }
+studentTeacher:any;
+showHireRequest:boolean = false;
+showApplications:boolean = false;
+  constructor(
+    
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+
+  }
+
+  hireRequest(){
+    if(this.showHireRequest === false){
+      this.showHireRequest = true;
+    }
+    else {
+      this.showHireRequest = false;
+    }
+  }
+  newApplication(){
+    if(this.showApplications === false){
+      this.showApplications = true;
+    }
+    else {
+      this.showApplications = false;
+    }
   }
 
 }

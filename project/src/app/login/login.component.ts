@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
     private _userService: UserService,
     private router: Router
     )
-   { }
+   { 
+     console.log("inside login const")
+   }
 
   ngOnInit(): void {
   }
@@ -28,12 +30,21 @@ export class LoginComponent implements OnInit {
           if(this.user != null){
             console.log(this.user);
             if(this.user.role.match("ADMIN")){
+              localStorage.setItem("user", this.user);
+              localStorage.setItem("role","ADMIN");
               this.router.navigate(["admin"], {queryParams: this.user});
             }
             else{
-              console.log(this.user)
-              console.log(this.user.students)
+               if(this.user.profile.match("TEACHER")){
+                localStorage.setItem("user", this.user);
+                localStorage.setItem("role","TEACHER");
+                  this.router.navigate(["teacher"], {queryParams: this.user})
+               }
+               else{
+                localStorage.setItem("user", this.user);
+                localStorage.setItem("role","STUDENT");
               this.router.navigate(["user"], {queryParams: this.user})
+               }
             }
           }
         });

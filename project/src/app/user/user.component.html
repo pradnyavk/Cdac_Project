@@ -1,26 +1,25 @@
+<app-nav-bar></app-nav-bar>
+<div class="row">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">Welcome {{user.name}}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" (click)="addStudent()" [ngStyle]="{'cursor':'pointer'}">Add Student</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" (click)="getStudentList()" [ngStyle]="{'cursor':'pointer'}">Student List</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" (click)="addTeacher()" [ngStyle]="{'cursor':'pointer'}">Add Teacher</a>
-        </li>
-        
-      </ul>
 
-    </div>
-  </nav>
 
-<br>
+<div class="col-md-4">
+  {{user.name}}
+</div>
+
+<div class="col-md-8">
+<button (click)="toggleSS()">StudentSection</button>
+<div *ngIf="showStudentSection">
+<button (click)="addStudent()">Add Student</button>
+<button (click)="getStudentList()">Student List</button>
+</div>
 <router-outlet></router-outlet>
+</div>
+
+
+
+
+</div>
+
+
+

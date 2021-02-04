@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router} from '@angular/router';
 import { IUser } from '../model/user';
@@ -9,26 +10,47 @@ import { IUser } from '../model/user';
 })
 export class UserComponent implements OnInit {
   user:any;
+  showStudentSection:boolean = false;
+  showTeacherSection:boolean = false;
   constructor(
     private route: ActivatedRoute,
     private router:Router         
-    ) { }
+    ) { console.log("user component")}
   ngOnInit(): void {
     this.route.queryParams.subscribe((params)=>this.user = params);
     console.log(this.user.name);
-    console.log(this.user.students);
   }
   addStudent(){
     this.router.navigate(['addStudent'], {relativeTo:this.route, queryParams:this.user, replaceUrl:true});
   }
-
+  addTeacher(){
+    this.router.navigate(['addTeacher'],{relativeTo:this.route, queryParams:this.user, replaceUrl:true});
+  }
   getStudentList(){
-    console.log("urk")
-    this.router.navigate(['studentList'], {relativeTo:this.route,queryParams:this.user, replaceUrl: true})
+    this.router.navigate(['user/studentList'], {queryParams:this.user, replaceUrl: true})
+  }
+  getTeacherList(){
+    this.router.navigate(['user/teacherList'], {queryParams:this.user, replaceUrl: true})
   }
 
-  addTeacher(){
-    this.router.navigate(['addTeacher'],{relativeTo:this.route,queryParams:this.user,replaceUrl:true});
+  toggleSS(){
+    if(this.showStudentSection === false){
+      this.showStudentSection = true;
+      this.showTeacherSection = false;
+    }
+    else{
+      this.showStudentSection = false;
+    }
+  }
+
+  toggleTS(){
+    if(this.showTeacherSection === false){
+      this.showTeacherSection = true;
+      this.showStudentSection = false;
+    }
+    else{
+      this.showTeacherSection = false;
+    }
   }
 
 }

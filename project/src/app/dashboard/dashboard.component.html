@@ -1,38 +1,16 @@
-<h1>DashBoard</h1>
-
-
-
-<!-- <br>
-<br>
-<br>
-<div>
-    <li *ngFor="let student of students">
-        <span>{{student.studentName}}</span>| |
-        <span>{{student.dob}}</span>| |
-        <span>{{student.email}}</span>
-    </li>
+<app-nav-bar></app-nav-bar>
+<div class="box">
+    <div style="margin-left: 792px;margin-top: 10px;padding: 7px; color:beige; "><p>To use our facility register here</p></div>
+     <div style="margin-left:5px; ">
+       <a class="btn btn-primary" style=" margin-top: 10px;background-color: #98bef7;"href="http://localhost:4200/register">Register</a>
+     </div>
 </div>
-<button (click)="getStudentsDetail()">List</button>
-<br>
-<hr>
-<br>
-<p>Serach Student By Id</p>
-<form #formdata1="ngForm" (ngSubmit)="onSubmitId(formdata1)">
-    Enter Student id :<input type="text" name="id" id="id" ngModel><br>
-    <input type="submit" value="search">
-</form>
-<div>
-    <span>{{student1.studentName}}</span>| |
-    <span>{{student1.dob}}</span>| |
-    <span>{{student1.email}}</span>
+<div class="fullbox">
+  
+  <div class="col-md-4 offset-md-4 align-self-center" style="color: rgb(7, 1, 1); background: rgba(233, 230, 230, 0.3);">
+    <h1>
+      Search tutor on One Click
+    </h1>
+    <a href="http://localhost:4200/register" class="btn btn-primary">Register Now</a>
+  </div>
 </div>
-<br>
-<br>
-<p>Enter Student Details</p>
-<form #formdata2="ngForm" (ngSubmit)="onSubmit(formdata2)">
-    <input type="text" name="studentName" id="name" ngModel><br>
-    <input type="email" name="email" id="email" ngModel><br>
-    <input type="date" name="dob" id="dob" ngModel><br>
-    <input type="submit">
-</form>
-{{saveStudent}} -->
