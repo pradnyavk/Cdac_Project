@@ -36,7 +36,7 @@ public class StudentTeacherController {
 		logger.info("StudentTeacher constructor initiated @@@");
 	}
 	
-	
+// used by student to check the list of teacher that is who is subscribed
 	@GetMapping("/student/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> getTeacherByStudentId(@PathVariable String id){
@@ -63,6 +63,7 @@ public class StudentTeacherController {
 		return new ResponseEntity<ArrayList<StudentTeacher>>(st, HttpStatus.OK);
 	}
 	
+// used by admin to allocate teacher to student
 	@GetMapping("/updatestatus/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> updateStudentTeacherStatus(@PathVariable String id){
@@ -79,7 +80,10 @@ public class StudentTeacherController {
 			return new ResponseEntity<ArrayList<StudentTeacher>>(st, HttpStatus.OK);
 		
 	}
+	
+// all avliable job for teacher ...//used by teacher
 	@GetMapping("/studentList/{teacherId}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> getStudentListByTeacherId(@PathVariable String teacherId){
 		long id = Long.parseLong(teacherId);
 		 ArrayList<Student> st = new ArrayList<>();
@@ -91,6 +95,22 @@ public class StudentTeacherController {
 		 return new ResponseEntity<ArrayList<Student>>(st, HttpStatus.OK);
 	}
 	
+// used by teacher to check new avliable job are there .. req from student
+	@GetMapping("/studentList/newJob/{teacherId}")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> getStudentListByTeacherIdWithStatusIsFalse(@PathVariable String teacherId){
+		long id = Long.parseLong(teacherId);
+		 ArrayList<Student> st = new ArrayList<>();
+		 try {
+			  st = dao.findStudentListByTeacherIdWithStatusIsFalse(id);
+		 }catch (RuntimeException e) {
+			 return new ResponseEntity<>(HttpStatus.NO_CONTENT);	
+		}
+		 return new ResponseEntity<ArrayList<Student>>(st, HttpStatus.OK);
+	}
+	
+// used by student to remove teacher.......
+//==== implement mailing whenever it remove happen admin gets email of removel
 	@GetMapping("/removeStudentTeacher/{teacherId}/{studentId}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> removeStudentfromteacher(@PathVariable String studentId, @PathVariable String teacherId){

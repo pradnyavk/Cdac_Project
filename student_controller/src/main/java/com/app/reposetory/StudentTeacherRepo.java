@@ -23,8 +23,12 @@ public interface StudentTeacherRepo extends JpaRepository<StudentTeacher, Long>{
 	public void changeStatusOfId(long id1);
 	public StudentTeacher findStudentTeacherById(long id1);
 	
-	@Query("select s from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher t where t.id = ?1")
+	@Query("select s from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher t where t.id = ?1 and st.status = true")
 	public ArrayList<Student> findStudentListByTeacherId(long id);
+	
+	@Query("select s from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher t where t.id = ?1 and st.status = false")
+	public ArrayList<Student> findStudentListByTeacherIdWithStatusIsFalse(long id);
+	
 	
 	@Query("select st from StudentTeacher st join st.student s join st.teacherCourse tc join tc.teacher t where s.id = ?1 and t.id = ?2")
 	public StudentTeacher getStudentTeacherByStudentIdAndTeacherId(long stId, long tId);

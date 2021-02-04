@@ -15,6 +15,8 @@ export class StudentDetailComponent implements OnInit {
   student:any;
   // store list of teacher for selected subj
   teachers:any;
+  showHiredTeacher:any = false;
+  showTeacherList:any = true;
   searcheSubject:String= new String();
   constructor(
     private router: Router,
@@ -35,13 +37,21 @@ export class StudentDetailComponent implements OnInit {
   getTeachers(formref:NgForm){
     var subject = formref.value.subject;
     this.searcheSubject = subject;
+    
     this._teacherService.getTeachersBySubjectAndAdd(subject, this.student.location.state,this.student.location.city)
           .subscribe(data=>this.teachers = data);
+          this.showTeacherList = true;
+          this.showHiredTeacher = false;
   }
 
   // add teacher to student
   hireTeacher(teacherId:String){
    this._studentService.addTeacher(teacherId, this.student.id, this.searcheSubject)
+  }
+
+  HiredTeacher(){
+    this.showHiredTeacher = true;
+    this.showTeacherList =false;
   }
 
 }

@@ -89,6 +89,10 @@ export class TeacherService {
     let url = "http://localhost:8080/studentTeacher/studentList/" + teacherId;
     return this._http.get(url);
   }
+  getStudentListNewJob(teacherId: any) {
+    let url = "http://localhost:8080/studentTeacher/studentList/newJob/" + teacherId;
+    return this._http.get(url);
+  }
 
   // remove studentTeacher pair from studenTeacherlist
   removeStudent(studentId: any, teacherId: any) {
