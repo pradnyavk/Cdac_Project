@@ -91,6 +91,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/toolkit-minimal.css",
               "src/styles.css"
             ],
             "scripts": []

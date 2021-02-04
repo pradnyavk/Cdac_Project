@@ -157,7 +157,7 @@ public class UserController {
 			logger.info("verification done !!!!!!");
 			return new ResponseEntity<User>(user1, HttpStatus.OK);
 		}
-		return new ResponseEntity<String>("invalid Email or password..", HttpStatus.NO_CONTENT);
+		return new ResponseEntity<String>("invalid Email or password..", HttpStatus.OK);
 	}
 	
 //adding new student to user giving user Id 

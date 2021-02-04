@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 2021-01-31 05:34:03,716 INFO com.app.controller.UserController [restartedMain] UserController constructor@@
 2021-01-31 12:20:29,927 INFO com.app.controller.TeacherController [restartedMain] Teacher Controller constructor Initiated @@
 2021-01-31 12:20:29,991 INFO com.app.controller.UserController [restartedMain] User Controller constructor Initiated @@
@@ -148,4 +149,21 @@
 2021-02-03 21:43:49,222 INFO com.app.controller.UserController [http-nio-8080-exec-2] verification done !!!!!!
 2021-02-03 21:50:59,727 INFO com.app.controller.UserController [http-nio-8080-exec-2] ================login request{} time of User rahul728@gmail.com is : 2021-02-03=========
 2021-02-03 21:50:59,733 INFO com.app.controller.UserController [http-nio-8080-exec-2] verification done !!!!!!
+>>>>>>> upstream/master
+=======
+2021-02-04 00:10:54,614 INFO com.app.controller.UserController [http-nio-8080-exec-3] ================login request{} time of User rahul728@gmail.com is : 2021-02-04=========
+2021-02-04 00:10:57,152 INFO com.app.controller.UserController [http-nio-8080-exec-3] verification done !!!!!!
+2021-02-04 00:12:28,443 INFO com.app.controller.UserController [http-nio-8080-exec-5] ================login request{} time of User kparanav50@gmail.com is : 2021-02-04=========
+2021-02-04 00:12:28,559 INFO com.app.controller.UserController [http-nio-8080-exec-5] verification done !!!!!!
+2021-02-04 00:38:15,190 INFO com.app.controller.UserController [http-nio-8080-exec-9] ================login request{} time of User pranav@gmail.com is : 2021-02-04=========
+2021-02-04 00:38:15,513 INFO com.app.controller.UserController [http-nio-8080-exec-9] verification done !!!!!!
+2021-02-04 00:42:49,884 INFO com.app.controller.UserController [http-nio-8080-exec-5] ================login request{} time of User pranav@gmail.com is : 2021-02-04=========
+2021-02-04 00:42:49,893 INFO com.app.controller.UserController [http-nio-8080-exec-5] verification done !!!!!!
+2021-02-04 00:43:26,130 INFO com.app.controller.UserController [http-nio-8080-exec-3] ================login request{} time of User rahul728@gmail.com is : 2021-02-04=========
+2021-02-04 00:43:26,175 INFO com.app.controller.UserController [http-nio-8080-exec-3] verification done !!!!!!
+2021-02-04 00:43:55,958 INFO com.app.controller.UserController [http-nio-8080-exec-5] ================login request{} time of User kparanav50@gmail.com is : 2021-02-04=========
+2021-02-04 00:43:55,961 INFO com.app.controller.UserController [http-nio-8080-exec-5] verification done !!!!!!
+2021-02-04 00:44:28,507 INFO com.app.controller.TeacherController [http-nio-8080-exec-7] list fatching.....
+2021-02-04 00:44:29,681 INFO com.app.controller.TeacherController [http-nio-8080-exec-7] done fetching
+2021-02-04 00:44:45,814 INFO com.app.controller.UserController [http-nio-8080-exec-3] ================login request{} time of User kparanav@gmail.com is : 2021-02-04=========
 >>>>>>> upstream/master
