@@ -13,6 +13,8 @@ export class JobApplicationsComponent implements OnInit {
   teachers:any;
   // where teacher register himself for new course or course
   teacherCourse:any;
+
+ 
   constructor(
     private _teacherService : TeacherService,
     private adminService: AdminService
@@ -21,21 +23,25 @@ export class JobApplicationsComponent implements OnInit {
   ngOnInit(): void {
     this._teacherService.getTeacherListWithStatusIsFalse()
         .subscribe(data=>this.teachers=data);
-        this.adminService.getTeacherCourseWhereStatusIsFalse()
+    
+    this.adminService.getTeacherCourseWhereStatusIsFalse()
         .subscribe(data=>{
             this.teacherCourse = data;
             console.log(this.teacherCourse);
-        })
+        });
+   
   }
 
   // will confirm teacher status
   confirmStatus(id:any){
     console.log(id);
     this._teacherService.confirmTeacherStatus(id).subscribe(data=>{this.teachers = data});
+  
   }
   // reject teacher status
   reject(id:any){
     this._teacherService.removeTeacherById(id).subscribe(data=>this.teachers = data);
+
   }
 
   // confirm teacher course status
@@ -49,6 +55,7 @@ export class JobApplicationsComponent implements OnInit {
     this.adminService.rejectTeacherCourse(id).subscribe(data=>{
       console.log("confirmed"+data);
     })
+  
   }
 
 }

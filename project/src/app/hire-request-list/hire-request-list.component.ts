@@ -12,17 +12,20 @@ export class HireRequestListComponent implements OnInit {
   studentTeacher:any;
   constructor(
     private _adminService: AdminService
-  ) { }
+  ) { 
+  }
   ngOnInit(): void {
     this._adminService.getAllNewStudentTeacher().subscribe(data=>{this.studentTeacher = data
       console.log(data)
     });
+ 
   }
 
   // admin will confirm the requested pair of student and teacher
   conformStatus(id:String){
     this._adminService.confirmStudentTeacherStatus(id)
     .subscribe(data=>this.studentTeacher = data);
+
   }
 
 }
